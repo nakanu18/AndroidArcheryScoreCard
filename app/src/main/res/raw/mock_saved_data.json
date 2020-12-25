@@ -46,6 +46,7 @@
   "rounds": [
     {
       "ID": 0,
+      "roundFormatID": 0,
       "date": "12-24-2020",
       "kit": 0,
       "tags":  [2, 3],

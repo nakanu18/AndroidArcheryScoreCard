@@ -18,6 +18,12 @@ data class ArcherData(
     fun getTag(ID: Int): Tag? {
         return tags.find { it.ID == ID }
     }
+
+    fun getMaxScoreForRound(round: Round): Int {
+        val roundFormat = getRoundFormat(round.roundFormatID)
+
+        return roundFormat?.maxScore ?: 0
+    }
 }
 
 data class RoundFormat(
@@ -30,6 +36,7 @@ data class RoundFormat(
 
 data class Round(
     val ID: Int,
+    val roundFormatID: Int,
     val date: String,
     val kit: Int,
     val scores: List<Int>,
@@ -51,5 +58,5 @@ data class Round(
 data class Tag(
     val ID: Int,
     val name: String,
-    val notes: String
+    val notes: String = ""
 )
