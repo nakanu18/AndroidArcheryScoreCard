@@ -1,0 +1,66 @@
+{
+  "saveVersion": 1,
+  "saveDate": "1/17/18, 12:45 AM",
+  "tags": [
+    {
+      "ID": 0,
+      "name": "White SF Premium",
+      "notes": ""
+    },
+    {
+      "ID": 1,
+      "name": "Red Tempest",
+      "notes": ""
+    },
+    {
+      "ID": 2,
+      "name": "Blue Tempest",
+      "notes": ""
+    },
+    {
+      "ID": 3,
+      "name": "RX7 520",
+      "notes": ""
+    },
+    {
+      "ID": 4,
+      "name": "SST 700",
+      "notes": ""
+    },
+    {
+      "ID": 5,
+      "name": "MK Zest 40.5",
+      "notes": ""
+    }
+  ],
+  "roundFormats": [
+    {
+      "ID": 0,
+      "name": "Vegas 300",
+      "targetFace": 0,
+      "numEnds": 10,
+      "arrowsPerEnd": 3,
+      "maxScore": 300
+    }
+  ],
+  "rounds": [
+    {
+      "ID": 0,
+      "date": "12-24-2020",
+      "kit": 0,
+      "tags":  [2, 3],
+      "scores": [
+        11, 9, 8,
+        11, 9, 9,
+        9, 6, 5,
+        10, 9, 7,
+        9, 8, 5,
+        9, 8, 8,
+        10, 10, 9,
+        10, 9, 8,
+        9, 9, 7,
+        10, 9, 8
+      ]
+    }
+  ]
+}
