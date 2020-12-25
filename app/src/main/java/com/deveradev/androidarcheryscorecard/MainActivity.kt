@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         val data = ArcherDataRepository.getData(this)
 
         Log.i(AED_LOG_TAG, "Total Score: ${data.rounds[0].getTotalScore()}")
+        Log.i(AED_LOG_TAG, "Total Score: ${data.rounds[1].getTotalScore()}")
+
+        Log.i(AED_LOG_TAG, "${data.getScorecardForRound(data.rounds[0])}")
+        Log.i(AED_LOG_TAG, "${data.getScorecardForRound(data.rounds[1])}")
     }
 
 }
