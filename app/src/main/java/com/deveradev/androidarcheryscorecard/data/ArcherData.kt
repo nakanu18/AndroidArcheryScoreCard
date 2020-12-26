@@ -12,38 +12,28 @@ data class ArcherData(
     }
 
     fun getRound(ID: Int): Round? {
-        return rounds.find { it.ID == ID}
+        return rounds.find { it.ID == ID }
     }
 
     fun getTag(ID: Int): Tag? {
         return tags.find { it.ID == ID }
     }
 
-    fun getMaxScoreForRound(round: Round): Int {
-        val roundFormat = getRoundFormat(round.roundFormatID)
-
-        return roundFormat?.maxScore ?: 0
-    }
-
-    fun getScorecardForRound(round: Round): List<Int> {
-        val endScores = mutableListOf<Int>()
-
+    fun getScorecardForRound(round: Round): Scorecard? {
         getRoundFormat(round.roundFormatID)?.let {
-            var endScore = 0
-            var j = 0
-
-            for (i in 0 until (it.numEnds * it.arrowsPerEnd)) {
-                endScore += RoundFormat.getVegasArrowScore(round.scores[i])
-
-                if (++j == 3) {
-                    endScores.add(endScore)
-                    endScore = 0
-                    j = 0
-                }
-            }
+            return Scorecard(round, it)
         }
-        return endScores.toList()
+        return null
     }
+
+    fun getArrow(round: Round, endID: Int, arrowID: Int): Int {
+        getRoundFormat(round.roundFormatID)?.let {
+            val index = endID * it.arrowsPerEnd + arrowID
+            return round.arrows[index]
+        }
+        return 0
+    }
+
 }
 
 data class RoundFormat(
@@ -61,7 +51,8 @@ data class RoundFormat(
                 11 to 10, 10 to 10, 9 to 9,
                 8 to 8, 7 to 7, 6 to 6, 5 to 5,
                 4 to 4, 3 to 3, 2 to 2, 1 to 1,
-                0 to 0, -1 to 0)
+                0 to 0, -1 to 0
+            )
 
             return vegasScoreMap[arrow] ?: 0
         }
@@ -73,16 +64,9 @@ data class Round(
     val ID: Int,
     val roundFormatID: Int,
     val date: String,
-    val kit: Int,
-    val scores: List<Int>,
+    val arrows: List<Int>,
     val tags: List<Int>
-) {
-    fun getTotalScore(): Int {
-        return scores.fold(0) { acc, arrow ->
-            RoundFormat.getVegasArrowScore(arrow) + acc
-        }
-    }
-}
+)
 
 data class Tag(
     val ID: Int,

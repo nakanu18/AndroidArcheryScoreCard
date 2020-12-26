@@ -15,6 +15,7 @@ import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 //      removed android:paddingTop="?attr/actionBarSize" from activity_main.xml
 // DONE: unsure why xml needs string concat for data binding
 //      accessing non-string properties will cause a crash
+// TODO: unsure why Scorecard.totalScore computed property is crashing
 // TODO: fetch saved data via coroutine
 class MainActivity : AppCompatActivity() {
 
@@ -32,11 +33,15 @@ class MainActivity : AppCompatActivity() {
 
         val data = ArcherDataRepository.getData(this)
 
-        Log.i(AED_LOG_TAG, "Total Score: ${data.rounds[0].getTotalScore()}")
-        Log.i(AED_LOG_TAG, "Total Score: ${data.rounds[1].getTotalScore()}")
+        data.getScorecardForRound(data.rounds[0])?.let {
+            Log.i(AED_LOG_TAG, "Total: ${it.totalScore}")
+            Log.i(AED_LOG_TAG, "Xs: ${it.totalXCount}")
+        }
 
-        Log.i(AED_LOG_TAG, "${data.getScorecardForRound(data.rounds[0])}")
-        Log.i(AED_LOG_TAG, "${data.getScorecardForRound(data.rounds[1])}")
+        data.getScorecardForRound(data.rounds[1])?.let {
+            Log.i(AED_LOG_TAG, "Total: ${it.totalScore}")
+            Log.i(AED_LOG_TAG, "Xs: ${it.totalXCount}")
+        }
     }
 
 }

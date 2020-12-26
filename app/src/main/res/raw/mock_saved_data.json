@@ -48,9 +48,8 @@
       "ID": 0,
       "roundFormatID": 0,
       "date": "12-23-2020",
-      "kit": 0,
       "tags":  [2, 3],
-      "scores": [
+      "arrows": [
         10, 9, 8,
         11, 10, 9,
         11, 11, 9,
@@ -67,9 +66,8 @@
       "ID": 0,
       "roundFormatID": 0,
       "date": "12-24-2020",
-      "kit": 0,
       "tags":  [2, 4],
-      "scores": [
+      "arrows": [
         11, 9, 7,
         10, 7, 5,
         10, 9, 7,
