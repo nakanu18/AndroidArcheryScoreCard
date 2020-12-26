@@ -19,14 +19,15 @@ class HistoryFragment : Fragment() {
     private lateinit var historyViewModel: HistoryViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val viewModelFactory = HistoryViewModelFactory(requireActivity())
         val root = inflater.inflate(R.layout.fragment_history, container, false)
 
-        historyViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
+        historyViewModel =
+            ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         historyViewModel.rounds.observe(viewLifecycleOwner, Observer {
             records_recycler_view.layoutManager = LinearLayoutManager(requireActivity());
             records_recycler_view.adapter = HistoryRecyclerAdapter(historyViewModel)

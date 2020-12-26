@@ -37,7 +37,7 @@
     {
       "ID": 0,
       "name": "Vegas 300",
-      "targetFace": 0,
+      "distance": "20yd",
       "numEnds": 10,
       "arrowsPerEnd": 3,
       "maxScore": 300

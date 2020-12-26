@@ -13,7 +13,8 @@ import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 
 // DONE: figure out top margin on top of the pages
 //      removed android:paddingTop="?attr/actionBarSize" from activity_main.xml
-// TODO: unsure why xml needs string concat for data binding
+// DONE: unsure why xml needs string concat for data binding
+//      accessing non-string properties will cause a crash
 // TODO: fetch saved data via coroutine
 class MainActivity : AppCompatActivity() {
 

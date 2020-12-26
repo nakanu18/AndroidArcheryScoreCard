@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.deveradev.androidarcheryscorecard.data.RoundViewModel" />
@@ -12,57 +12,60 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/border">
 
         <TextView
-            android:id="@+id/record_id"
-            android:layout_width="0dp"
+            android:id="@+id/text_round_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@null"
-            android:ems="10"
-            android:text="@{`Record ID ` + viewModel.recordID}"
-            app:layout_constraintBottom_toTopOf="@+id/round_id"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:text="@{viewModel.roundName}"
+            android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+            tools:text="Vegas 300" />
 
         <TextView
-            android:id="@+id/round_id"
-            android:layout_width="0dp"
+            android:id="@+id/text_distance"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@null"
-            android:ems="10"
-            android:text="@{`Round ID ` + viewModel.roundID}"
-            app:layout_constraintBottom_toTopOf="@+id/score_id"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{viewModel.distance}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/text_round_name"
+            app:layout_constraintStart_toEndOf="@+id/text_round_name"
+            tools:text="20 yards" />
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{viewModel.date}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/record_id"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toBottomOf="@+id/text_round_name"
+            tools:text="Sept 6, 1981" />
 
         <TextView
-            android:id="@+id/score_id"
-            android:layout_width="0dp"
+            android:id="@+id/text_score"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@null"
-            android:ems="10"
-            android:text="@{`Score ` + viewModel.score}"
+            android:text="@{viewModel.score}"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="273/300" />
+
+        <TextView
+            android:id="@+id/text_score_ex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.scoreEx}"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/round_id"
-            tools:ignore="HardcodedText" />
-
+            tools:text="15x 10t" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

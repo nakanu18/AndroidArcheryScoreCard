@@ -28,7 +28,7 @@ class ArcherDataRepository {
         private fun getNewData(): ArcherData {
             return ArcherData(
                 listOf<RoundFormat>(
-                    RoundFormat(0, 30, "Vegas 300", 3, 300)
+                    RoundFormat(0, 30, "20yd","Vegas 300", 3, 300)
                 ),
                 listOf<Round>(),
                 "",

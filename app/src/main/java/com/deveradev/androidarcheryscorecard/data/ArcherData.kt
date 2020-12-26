@@ -49,6 +49,7 @@ data class ArcherData(
 data class RoundFormat(
     val ID: Int,
     val arrowsPerEnd: Int,
+    val distance: String,
     val name: String,
     val numEnds: Int,
     val maxScore: Int
