@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.deveradev.androidarcheryscorecard.databinding.HistoryRecordItemBinding
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
-import com.deveradev.androidarcheryscorecard.data.RecordViewModel
+import com.deveradev.androidarcheryscorecard.data.RoundViewModel
 
 class HistoryRecyclerAdapter(
     private val viewModel: HistoryViewModel
@@ -13,8 +13,8 @@ class HistoryRecyclerAdapter(
 
     inner class ViewHolder(val binding: HistoryRecordItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(record: RecordViewModel) {
-            binding.recordViewModel = record
+        fun bind(record: RoundViewModel) {
+            binding.viewModel = record
             binding.executePendingBindings()
         }
 
@@ -28,13 +28,13 @@ class HistoryRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        viewModel.records.value?.get(position)?.let {
+        viewModel.rounds.value?.get(position)?.let {
             holder.bind(it)
         }
     }
 
     override fun getItemCount(): Int {
-        return viewModel.records.value?.size ?: 0
+        return viewModel.rounds.value?.size ?: 0
     }
 
 }

@@ -1,8 +1,5 @@
 package com.deveradev.androidarcheryscorecard.data
 
-import android.util.Log
-import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
-
 data class ArcherData(
     val roundFormats: List<RoundFormat>,
     val rounds: List<Round>,

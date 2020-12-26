@@ -14,7 +14,9 @@ class ArcherDataRepository {
         fun getData(context: Context): ArcherData {
             if (archerData == null) {
                 val file =
-                    context.resources.openRawResource(R.raw.mock_saved_data).bufferedReader()
+                    context.resources
+                        .openRawResource(R.raw.mock_saved_data)
+                        .bufferedReader()
                         .readText()
                 archerData = Gson().fromJson(file, ArcherData::class.java)
 

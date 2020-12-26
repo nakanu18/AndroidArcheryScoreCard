@@ -1,23 +1,21 @@
 package com.deveradev.androidarcheryscorecard.data
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HistoryViewModel : ViewModel() {
+class HistoryViewModel(context: Context) : ViewModel() {
 
-    val records = MutableLiveData<ArrayList<RecordViewModel>>()
+    private val archerData = ArcherDataRepository.getData(context)
 
-    companion object {
+    val rounds = MutableLiveData<ArrayList<RoundViewModel>>()
 
-        fun createMockData(numRecords: Int): ArrayList<RecordViewModel> {
-            val newRecords = ArrayList<RecordViewModel>()
+    init {
+        rounds.value = ArrayList()
 
-            for (i in 0..numRecords) {
-                newRecords.add(RecordViewModel(i, i, i * 2))
-            }
-            return newRecords
+        for (round in archerData.rounds) {
+            rounds.value?.add(RoundViewModel(round))
         }
-
     }
 
 }

@@ -6,12 +6,13 @@
 
     <data>
         <variable
-            name="recordViewModel"
-            type="com.deveradev.androidarcheryscorecard.data.RecordViewModel" />
+            name="viewModel"
+            type="com.deveradev.androidarcheryscorecard.data.RoundViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:background="@drawable/border">
 
@@ -24,7 +25,7 @@
             android:layout_marginEnd="16dp"
             android:background="@null"
             android:ems="10"
-            android:text="@{`Record ID` + recordViewModel.recordID}"
+            android:text="@{`Record ID ` + viewModel.recordID}"
             app:layout_constraintBottom_toTopOf="@+id/round_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -40,7 +41,7 @@
             android:layout_marginEnd="16dp"
             android:background="@null"
             android:ems="10"
-            android:text="@{`Round ID ` + recordViewModel.roundID}"
+            android:text="@{`Round ID ` + viewModel.roundID}"
             app:layout_constraintBottom_toTopOf="@+id/score_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +57,7 @@
             android:layout_marginBottom="16dp"
             android:background="@null"
             android:ems="10"
-            android:text="@{`Score ` + recordViewModel.score}"
+            android:text="@{`Score ` + viewModel.score}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
