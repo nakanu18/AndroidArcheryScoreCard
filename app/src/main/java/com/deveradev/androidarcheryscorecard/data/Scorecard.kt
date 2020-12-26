@@ -31,10 +31,19 @@ class Scorecard(val round: Round, val roundFormat: RoundFormat) {
                 endScore.endTotal += arrowScore
                 endScore.runningTotal = runningTotal
             }
-            Log.i(AED_LOG_TAG, endScore.toString())
+            endScores.add(endScore)
         }
         totalScore = runningTotal
         totalXCount = runningXCount
+    }
+
+    override fun toString(): String {
+        var desc = "${roundFormat.name}\n"
+
+        for (endScore in endScores) {
+            desc += endScore.toString() + "\n"
+        }
+        return desc
     }
 
     inner class EndScore() {
@@ -44,7 +53,7 @@ class Scorecard(val round: Round, val roundFormat: RoundFormat) {
         var xCount = 0
 
         override fun toString(): String {
-            return "scores ${sortedScores.toString()}, endTotal: $endTotal, runningTotal: $runningTotal"
+            return "scores ${sortedScores.toString()} = $endTotal => $runningTotal : ${xCount}x"
         }
     }
 

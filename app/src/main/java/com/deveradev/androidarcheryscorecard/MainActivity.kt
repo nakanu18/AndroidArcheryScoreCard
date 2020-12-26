@@ -16,7 +16,7 @@ import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 // DONE: unsure why xml needs string concat for data binding
 //      accessing non-string properties will cause a crash
 // TODO: unsure why Scorecard.totalScore computed property is crashing
-// TODO: fetch saved data via coroutine
+// DONE: fetch saved data via coroutine
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,18 +30,6 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_bows))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        val data = ArcherDataRepository.getData(this)
-
-        data.getScorecardForRound(data.rounds[0])?.let {
-            Log.i(AED_LOG_TAG, "Total: ${it.totalScore}")
-            Log.i(AED_LOG_TAG, "Xs: ${it.totalXCount}")
-        }
-
-        data.getScorecardForRound(data.rounds[1])?.let {
-            Log.i(AED_LOG_TAG, "Total: ${it.totalScore}")
-            Log.i(AED_LOG_TAG, "Xs: ${it.totalXCount}")
-        }
     }
 
 }

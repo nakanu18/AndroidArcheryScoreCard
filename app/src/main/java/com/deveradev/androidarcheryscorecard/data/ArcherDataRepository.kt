@@ -5,30 +5,35 @@ import android.util.Log
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ArcherDataRepository {
 
     companion object {
         private var archerData: ArcherData? = null
 
-        fun getData(context: Context): ArcherData {
-            if (archerData == null) {
-                val file =
-                    context.resources
+        suspend fun getData(context: Context): ArcherData {
+            archerData = if (archerData == null) {
+                withContext(Dispatchers.IO) {
+                    val file = context.resources
                         .openRawResource(R.raw.mock_saved_data)
                         .bufferedReader()
                         .readText()
-                archerData = Gson().fromJson(file, ArcherData::class.java)
-
-                Log.i(AED_LOG_TAG, archerData.toString())
+                    return@withContext Gson().fromJson(file, ArcherData::class.java)
+                }
+            } else {
+                getNewData()
             }
-            return archerData ?: getNewData()
+            return archerData!!
         }
 
         private fun getNewData(): ArcherData {
             return ArcherData(
                 listOf<RoundFormat>(
-                    RoundFormat(0, 30, "20yd","Vegas 300", 3, 300)
+                    RoundFormat(0, 30, "20yd", "Vegas 300", 3, 300)
                 ),
                 listOf<Round>(),
                 "",

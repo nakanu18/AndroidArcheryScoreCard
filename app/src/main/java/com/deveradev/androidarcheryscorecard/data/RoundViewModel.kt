@@ -1,6 +1,7 @@
 package com.deveradev.androidarcheryscorecard.data
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.deveradev.androidarcheryscorecard.ui.UNKNOWN_VALUE
 
 class RoundViewModel(private val archerData: ArcherData, private val round: Round) : ViewModel() {
