@@ -8,7 +8,8 @@ import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.RoundViewModel
 
 class HistoryRecyclerAdapter(
-    private val viewModel: HistoryViewModel
+    private val viewModel: HistoryViewModel,
+    private val onItemClick: (RoundViewModel) -> Unit
 ) : RecyclerView.Adapter<HistoryRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: HistoryRecordItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -30,6 +31,9 @@ class HistoryRecyclerAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         viewModel.rounds.value?.get(position)?.let {
             holder.bind(it)
+            holder.binding.root.setOnClickListener { _ ->
+                onItemClick(it)
+            }
         }
     }
 

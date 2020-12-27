@@ -17,6 +17,7 @@ import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 //      accessing non-string properties will cause a crash
 // TODO: unsure why Scorecard.totalScore computed property is crashing
 // DONE: fetch saved data via coroutine
+// TODO: find out how to dynamically add arrow buttons to the RoundEditor
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

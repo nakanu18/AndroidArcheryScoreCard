@@ -1,6 +1,7 @@
 package com.deveradev.androidarcheryscorecard.ui.history
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
+import com.deveradev.androidarcheryscorecard.data.RoundViewModel
+import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 import kotlinx.android.synthetic.main.fragment_history.*
 
 class HistoryFragment : Fragment() {
@@ -30,7 +34,9 @@ class HistoryFragment : Fragment() {
             ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         historyViewModel.rounds.observe(viewLifecycleOwner, Observer {
             records_recycler_view.layoutManager = LinearLayoutManager(requireActivity());
-            records_recycler_view.adapter = HistoryRecyclerAdapter(historyViewModel)
+            records_recycler_view.adapter = HistoryRecyclerAdapter(historyViewModel) {
+                Log.i(AED_LOG_TAG, it.score.toString())
+            }
         })
         return root
     }
