@@ -12,16 +12,13 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_history"
         android:name="com.deveradev.androidarcheryscorecard.ui.history.HistoryFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_history"
         tools:layout="@layout/fragment_history" >
         <action
-            android:id="@+id/action_navigation_dashboard_to_roundEditorFragment"
-            app:destination="@id/roundEditorFragment" />
-        <action
-            android:id="@+id/action_navigation_dashboard_to_roundEditorFragment2"
-            app:destination="@id/roundEditorFragment" />
+            android:id="@+id/action_history_to_round_editor"
+            app:destination="@id/fragment_round_editor" />
     </fragment>
 
     <fragment
@@ -29,9 +26,10 @@
         android:name="com.deveradev.androidarcheryscorecard.ui.bows.BowsFragment"
         android:label="@string/title_bows"
         tools:layout="@layout/fragment_bows" />
+
     <fragment
-        android:id="@+id/roundEditorFragment"
-        android:name="com.deveradev.androidarcheryscorecard.RoundEditorFragment"
+        android:id="@+id/fragment_round_editor"
+        android:name="com.deveradev.androidarcheryscorecard.ui.roundeditor.RoundEditorFragment"
         android:label="fragment_round_editor"
         tools:layout="@layout/fragment_round_editor" />
 </navigation>

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.deveradev.androidarcheryscorecard.R
@@ -36,6 +37,8 @@ class HistoryFragment : Fragment() {
             records_recycler_view.layoutManager = LinearLayoutManager(requireActivity());
             records_recycler_view.adapter = HistoryRecyclerAdapter(historyViewModel) {
                 Log.i(AED_LOG_TAG, it.score.toString())
+
+                findNavController().navigate(R.id.action_history_to_round_editor)
             }
         })
         return root
