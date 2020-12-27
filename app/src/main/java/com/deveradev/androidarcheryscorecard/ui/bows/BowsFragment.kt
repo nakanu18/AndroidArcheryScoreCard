@@ -15,15 +15,15 @@ class BowsFragment : Fragment() {
     private lateinit var bowsViewModel: BowsViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        bowsViewModel =
-                ViewModelProvider(this).get(BowsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_bows, container, false)
         val textView: TextView = root.findViewById(R.id.text_bows)
-        bowsViewModel.text.observe(viewLifecycleOwner, Observer {
+
+        this.bowsViewModel = ViewModelProvider(this).get(BowsViewModel::class.java)
+        this.bowsViewModel.text.observe(this.viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

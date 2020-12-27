@@ -31,13 +31,14 @@ class HistoryFragment : Fragment() {
         val viewModelFactory = HistoryViewModelFactory(requireActivity())
         val root = inflater.inflate(R.layout.fragment_history, container, false)
 
-        historyViewModel =
+        this.historyViewModel =
             ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
-        historyViewModel.rounds.observe(viewLifecycleOwner, Observer {
+        this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
             records_recycler_view.layoutManager = LinearLayoutManager(requireActivity());
-            records_recycler_view.adapter = HistoryRecyclerAdapter(historyViewModel) {
+            records_recycler_view.adapter = HistoryRecyclerAdapter(this.historyViewModel) {
                 Log.i(AED_LOG_TAG, it.score.toString())
 
+                this.historyViewModel.selectedRound.value = it.round
                 findNavController().navigate(R.id.action_history_to_round_editor)
             }
         })

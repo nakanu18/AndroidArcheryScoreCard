@@ -12,9 +12,10 @@ class HistoryViewModel(context: Context) : ViewModel() {
 
     private lateinit var archerData: ArcherData
     val rounds = MutableLiveData<ArrayList<RoundViewModel>>()
+    var selectedRound = MutableLiveData<Round>()
 
     init {
-        viewModelScope.launch {
+        this.viewModelScope.launch {
             archerData = ArcherDataRepository.getData(context)
 
             archerData.getScorecardForRound(archerData.rounds[0])?.let {

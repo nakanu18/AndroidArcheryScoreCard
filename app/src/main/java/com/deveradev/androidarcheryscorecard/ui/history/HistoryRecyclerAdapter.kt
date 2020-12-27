@@ -12,7 +12,8 @@ class HistoryRecyclerAdapter(
     private val onItemClick: (RoundViewModel) -> Unit
 ) : RecyclerView.Adapter<HistoryRecyclerAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: HistoryRecordItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: HistoryRecordItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(record: RoundViewModel) {
             binding.viewModel = record
@@ -29,16 +30,16 @@ class HistoryRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        viewModel.rounds.value?.get(position)?.let {
+        this.viewModel.rounds.value?.get(position)?.let {
             holder.bind(it)
             holder.binding.root.setOnClickListener { _ ->
-                onItemClick(it)
+                this.onItemClick(it)
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return viewModel.rounds.value?.size ?: 0
+        return this.viewModel.rounds.value?.size ?: 0
     }
 
 }

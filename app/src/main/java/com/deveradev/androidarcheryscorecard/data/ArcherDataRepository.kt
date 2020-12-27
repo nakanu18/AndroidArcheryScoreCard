@@ -16,7 +16,7 @@ class ArcherDataRepository {
         private var archerData: ArcherData? = null
 
         suspend fun getData(context: Context): ArcherData {
-            archerData = if (archerData == null) {
+            this.archerData = if (this.archerData == null) {
                 withContext(Dispatchers.IO) {
                     val file = context.resources
                         .openRawResource(R.raw.mock_saved_data)
@@ -27,7 +27,7 @@ class ArcherDataRepository {
             } else {
                 getNewData()
             }
-            return archerData!!
+            return this.archerData!!
         }
 
         private fun getNewData(): ArcherData {

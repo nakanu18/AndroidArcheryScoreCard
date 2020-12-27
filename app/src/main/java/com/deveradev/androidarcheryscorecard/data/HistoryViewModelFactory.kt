@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 class HistoryViewModelFactory(private val context: Context): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return HistoryViewModel(context) as T
+        return HistoryViewModel(this.context) as T
     }
 
 }

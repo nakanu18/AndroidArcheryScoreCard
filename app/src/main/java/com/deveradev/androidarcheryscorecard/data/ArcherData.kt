@@ -8,15 +8,15 @@ data class ArcherData(
     val tags: List<Tag>
 ) {
     fun getRoundFormat(ID: Int): RoundFormat? {
-        return roundFormats.find { it.ID == ID }
+        return this.roundFormats.find { it.ID == ID }
     }
 
     fun getRound(ID: Int): Round? {
-        return rounds.find { it.ID == ID }
+        return this.rounds.find { it.ID == ID }
     }
 
     fun getTag(ID: Int): Tag? {
-        return tags.find { it.ID == ID }
+        return this.tags.find { it.ID == ID }
     }
 
     fun getScorecardForRound(round: Round): Scorecard? {

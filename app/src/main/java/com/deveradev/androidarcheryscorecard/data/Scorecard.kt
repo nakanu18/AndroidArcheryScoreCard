@@ -15,14 +15,14 @@ class Scorecard(val round: Round, val roundFormat: RoundFormat) {
         var runningTotal = 0
         var runningXCount = 0
 
-        for (i in 0 until roundFormat.numEnds) {
+        for (i in 0 until this.roundFormat.numEnds) {
             val endScore = EndScore()
 
-            for (j in 0 until roundFormat.arrowsPerEnd) {
-                val arrowID = i * roundFormat.arrowsPerEnd + j
-                val arrowScore = RoundFormat.getVegasArrowScore(round.arrows[arrowID])
+            for (j in 0 until this.roundFormat.arrowsPerEnd) {
+                val arrowID = i * this.roundFormat.arrowsPerEnd + j
+                val arrowScore = RoundFormat.getVegasArrowScore(this.round.arrows[arrowID])
 
-                if (round.arrows[arrowID] == 11) {
+                if (this.round.arrows[arrowID] == 11) {
                     ++endScore.xCount
                     ++runningXCount
                 }
@@ -31,16 +31,16 @@ class Scorecard(val round: Round, val roundFormat: RoundFormat) {
                 endScore.endTotal += arrowScore
                 endScore.runningTotal = runningTotal
             }
-            endScores.add(endScore)
+            this.endScores.add(endScore)
         }
-        totalScore = runningTotal
-        totalXCount = runningXCount
+        this.totalScore = runningTotal
+        this.totalXCount = runningXCount
     }
 
     override fun toString(): String {
-        var desc = "${roundFormat.name}\n"
+        var desc = "${this.roundFormat.name}\n"
 
-        for (endScore in endScores) {
+        for (endScore in this.endScores) {
             desc += endScore.toString() + "\n"
         }
         return desc
@@ -53,7 +53,7 @@ class Scorecard(val round: Round, val roundFormat: RoundFormat) {
         var xCount = 0
 
         override fun toString(): String {
-            return "scores ${sortedScores.toString()} = $endTotal => $runningTotal : ${xCount}x"
+            return "scores ${this.sortedScores.toString()} = ${this.endTotal} => ${this.runningTotal} : ${this.xCount}x"
         }
     }
 

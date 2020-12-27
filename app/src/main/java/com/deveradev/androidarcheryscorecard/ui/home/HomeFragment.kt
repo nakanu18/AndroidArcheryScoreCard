@@ -19,10 +19,11 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+
+        this.homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        this.homeViewModel.text.observe(this.viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
