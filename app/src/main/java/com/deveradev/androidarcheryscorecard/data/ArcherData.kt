@@ -19,19 +19,13 @@ data class ArcherData(
         return this.tags.find { it.ID == ID }
     }
 
-    fun getScorecardForRound(round: Round): Scorecard? {
-        getRoundFormat(round.roundFormatID)?.let {
-            return Scorecard(round, it)
-        }
-        return null
+    fun getScorecardForRound(round: Round): Scorecard {
+        return Scorecard(round)
     }
 
     fun getArrow(round: Round, endID: Int, arrowID: Int): Int {
-        getRoundFormat(round.roundFormatID)?.let {
-            val index = endID * it.arrowsPerEnd + arrowID
-            return round.arrows[index]
-        }
-        return 0
+        val index = endID * round.roundFormat.arrowsPerEnd + arrowID
+        return round.arrows[index]
     }
 
 }
@@ -62,7 +56,7 @@ data class RoundFormat(
 
 data class Round(
     val ID: Int,
-    val roundFormatID: Int,
+    val roundFormat: RoundFormat,
     val date: String,
     val arrows: List<Int>,
     val tags: List<Int>

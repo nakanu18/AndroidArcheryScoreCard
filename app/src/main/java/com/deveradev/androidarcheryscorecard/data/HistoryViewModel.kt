@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class HistoryViewModel(context: Context) : ViewModel() {
 
-    private lateinit var archerData: ArcherData
+    lateinit var archerData: ArcherData
     val rounds = MutableLiveData<ArrayList<RoundViewModel>>()
     var selectedRound = MutableLiveData<Round>()
 

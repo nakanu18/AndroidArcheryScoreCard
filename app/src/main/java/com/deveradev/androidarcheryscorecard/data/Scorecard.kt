@@ -3,7 +3,8 @@ package com.deveradev.androidarcheryscorecard.data
 import android.util.Log
 import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 
-class Scorecard(val round: Round, val roundFormat: RoundFormat) {
+class Scorecard(val round: Round) {
+    val roundFormat = round.roundFormat
     val endScores = mutableListOf<EndScore>()
 //    val totalScore: Int
 //        get() = endScores.last().runningTotal

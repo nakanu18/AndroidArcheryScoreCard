@@ -6,13 +6,12 @@ import com.deveradev.androidarcheryscorecard.ui.UNKNOWN_VALUE
 
 class RoundViewModel(private val archerData: ArcherData, val round: Round) : ViewModel() {
 
-    private val roundFormat = archerData.getRoundFormat(round.roundFormatID)
-    private val scorecard = archerData.getScorecardForRound(round)
+    private val scorecard = this.archerData.getScorecardForRound(this.round)
 
-    val roundName = this.roundFormat?.name ?: UNKNOWN_VALUE
+    val roundName = this.round.roundFormat.name
     val date = this.round.date
-    val distance = this.roundFormat?.distance ?: UNKNOWN_VALUE
-    val score = "${this.scorecard?.totalScore ?: UNKNOWN_VALUE}"
-    val scoreEx = "${this.scorecard?.totalXCount ?: UNKNOWN_VALUE}x"
+    val distance = this.round.roundFormat.distance
+    val score = "${this.scorecard.totalScore}"
+    val scoreEx = "${this.scorecard.totalXCount}x"
 
 }
