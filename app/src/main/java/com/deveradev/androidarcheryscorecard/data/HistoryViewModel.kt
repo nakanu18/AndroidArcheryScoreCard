@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
+import com.deveradev.androidarcheryscorecard.ui.LogUtils
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(context: Context) : ViewModel() {
@@ -18,12 +19,11 @@ class HistoryViewModel(context: Context) : ViewModel() {
         this.viewModelScope.launch {
             archerData = ArcherDataRepository.getData(context)
 
-            archerData.getScorecardForRound(archerData.rounds[0])?.let {
-                Log.i(AED_LOG_TAG, "$it")
-            }
-
-            archerData.getScorecardForRound(archerData.rounds[1])?.let {
-                Log.i(AED_LOG_TAG, "$it")
+            LogUtils.log("ArcherDataRepository: getData")
+            for (round in archerData.rounds) {
+                archerData.getScorecardForRound(round)?.let {
+                    LogUtils.log("$it")
+                }
             }
 
             rounds.value = ArrayList()

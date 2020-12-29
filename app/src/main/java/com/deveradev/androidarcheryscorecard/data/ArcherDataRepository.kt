@@ -1,13 +1,9 @@
 package com.deveradev.androidarcheryscorecard.data
 
 import android.content.Context
-import android.util.Log
 import com.deveradev.androidarcheryscorecard.R
-import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ArcherDataRepository {
