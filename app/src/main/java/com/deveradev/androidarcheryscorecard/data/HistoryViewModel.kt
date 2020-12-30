@@ -21,14 +21,12 @@ class HistoryViewModel(context: Context) : ViewModel() {
 
             LogUtils.log("ArcherDataRepository: getData")
             for (round in archerData.rounds) {
-                archerData.getScorecardForRound(round)?.let {
-                    LogUtils.log("$it")
-                }
+                LogUtils.log("${ArcherData.getScorecardForRound(round)}")
             }
 
             rounds.value = ArrayList()
             for (round in archerData.rounds) {
-                rounds.value?.add(RoundViewModel(archerData, round))
+                rounds.value?.add(RoundViewModel(round))
             }
         }
     }
