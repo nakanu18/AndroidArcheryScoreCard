@@ -30,6 +30,6 @@
     <fragment
         android:id="@+id/fragment_round_editor"
         android:name="com.deveradev.androidarcheryscorecard.ui.roundeditor.RoundEditorFragment"
-        android:label="fragment_round_editor"
+        android:label="@string/title_round_editor"
         tools:layout="@layout/fragment_round_editor" />
 </navigation>

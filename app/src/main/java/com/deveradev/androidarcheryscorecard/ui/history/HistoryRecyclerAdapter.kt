@@ -3,20 +3,20 @@ package com.deveradev.androidarcheryscorecard.ui.history
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.deveradev.androidarcheryscorecard.databinding.HistoryRecordItemBinding
+import com.deveradev.androidarcheryscorecard.databinding.HistoryRoundItemBinding
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.RoundViewModel
 
 class HistoryRecyclerAdapter(
-    private val viewModel: HistoryViewModel,
+    private val historyViewModel: HistoryViewModel,
     private val onItemClick: (RoundViewModel) -> Unit
 ) : RecyclerView.Adapter<HistoryRecyclerAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: HistoryRecordItemBinding) :
+    inner class ViewHolder(val binding: HistoryRoundItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(record: RoundViewModel) {
-            binding.viewModel = record
+        fun bind(round: RoundViewModel) {
+            binding.viewModel = round
             binding.executePendingBindings()
         }
 
@@ -24,13 +24,13 @@ class HistoryRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = HistoryRecordItemBinding.inflate(inflater, parent, false)
+        val binding = HistoryRoundItemBinding.inflate(inflater, parent, false)
 
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        this.viewModel.rounds.value?.get(position)?.let {
+        this.historyViewModel.rounds.value?.get(position)?.let {
             holder.bind(it)
             holder.binding.root.setOnClickListener { _ ->
                 this.onItemClick(it)
@@ -39,7 +39,7 @@ class HistoryRecyclerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return this.viewModel.rounds.value?.size ?: 0
+        return this.historyViewModel.rounds.value?.size ?: 0
     }
 
 }

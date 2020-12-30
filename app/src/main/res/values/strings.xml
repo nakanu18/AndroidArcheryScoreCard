@@ -2,5 +2,6 @@
     <string name="app_name">AndroidArcheryScoreCard</string>
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
+    <string name="title_round_editor">Round Editor</string>
     <string name="title_bows">Bows</string>
 </resources>

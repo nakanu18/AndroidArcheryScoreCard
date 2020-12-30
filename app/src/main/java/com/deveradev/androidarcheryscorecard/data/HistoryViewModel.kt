@@ -13,7 +13,7 @@ class HistoryViewModel(context: Context) : ViewModel() {
 
     lateinit var archerData: ArcherData
     val rounds = MutableLiveData<ArrayList<RoundViewModel>>()
-    var selectedRound = MutableLiveData<Round>()
+    var selectedRound = MutableLiveData<RoundViewModel>()
 
     init {
         this.viewModelScope.launch {

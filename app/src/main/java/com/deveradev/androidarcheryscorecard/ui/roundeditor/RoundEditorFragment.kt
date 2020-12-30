@@ -10,9 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
+import kotlinx.android.synthetic.main.fragment_round_editor.*
 
 class RoundEditorFragment : Fragment() {
 
@@ -30,7 +32,8 @@ class RoundEditorFragment : Fragment() {
 
         this.historyViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
-
+            ends_recycler_view.layoutManager = LinearLayoutManager(requireActivity())
+            ends_recycler_view.adapter = RoundEditorRecyclerAdapter(this.historyViewModel)
         })
 
         // Inflate the layout for this fragment

@@ -30,11 +30,12 @@ class HistoryFragment : Fragment() {
         this.historyViewModel =
             ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
-            records_recycler_view.layoutManager = LinearLayoutManager(requireActivity())
-            records_recycler_view.adapter = HistoryRecyclerAdapter(this.historyViewModel) {
+            rounds_recycler_view.layoutManager = LinearLayoutManager(requireActivity())
+            rounds_recycler_view.adapter = HistoryRecyclerAdapter(this.historyViewModel) {
                 LogUtils.log(it.score.toString())
 
-                this.historyViewModel.selectedRound.value = it.round
+                // TODO: may want to create a new RoundViewModel here so we can discard later
+                this.historyViewModel.selectedRound.value = it
                 findNavController().navigate(R.id.action_history_to_round_editor)
             }
         })
