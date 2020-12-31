@@ -1,11 +1,11 @@
 package com.deveradev.androidarcheryscorecard.data
 
 data class ArcherData(
-    val roundFormats: List<RoundFormat>,
-    val rounds: List<Round>,
+    val roundFormats: ArrayList<RoundFormat>,
+    val rounds: ArrayList<Round>,
     val saveDate: String,
     val saveVersion: Int,
-    val tags: List<Tag>
+    val tags: ArrayList<Tag>
 ) {
     companion object {
         fun getScorecardForRound(round: Round): Scorecard {
@@ -53,8 +53,8 @@ data class Round(
     val ID: Int,
     val roundFormat: RoundFormat,
     val date: String,
-    val arrows: List<Int>,
-    val tags: List<Int>
+    val arrows: ArrayList<Int>,
+    val tags: ArrayList<Int>
 )
 
 data class Tag(

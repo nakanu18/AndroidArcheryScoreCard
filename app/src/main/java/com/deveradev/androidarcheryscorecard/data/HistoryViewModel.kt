@@ -12,22 +12,21 @@ import kotlinx.coroutines.launch
 class HistoryViewModel(context: Context) : ViewModel() {
 
     lateinit var archerData: ArcherData
-    val rounds = MutableLiveData<ArrayList<RoundViewModel>>()
-    var selectedRound = MutableLiveData<RoundViewModel>()
+
+    val rounds = MutableLiveData<ArrayList<Round>>()
+
+    var selectedRound = MutableLiveData<Round>()
 
     init {
         this.viewModelScope.launch {
             archerData = ArcherDataRepository.getData(context)
-
             LogUtils.log("ArcherDataRepository: getData")
+
             for (round in archerData.rounds) {
                 LogUtils.log("${ArcherData.getScorecardForRound(round)}")
             }
 
-            rounds.value = ArrayList()
-            for (round in archerData.rounds) {
-                rounds.value?.add(RoundViewModel(round))
-            }
+            rounds.value = archerData.rounds
         }
     }
 

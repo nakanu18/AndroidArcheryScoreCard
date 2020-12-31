@@ -5,18 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.deveradev.androidarcheryscorecard.databinding.HistoryRoundItemBinding
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
+import com.deveradev.androidarcheryscorecard.data.Round
 import com.deveradev.androidarcheryscorecard.data.RoundViewModel
 
 class HistoryRecyclerAdapter(
     private val historyViewModel: HistoryViewModel,
-    private val onItemClick: (RoundViewModel) -> Unit
+    private val onItemClick: (Round) -> Unit
 ) : RecyclerView.Adapter<HistoryRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: HistoryRoundItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(round: RoundViewModel) {
-            this.binding.viewModel = round
+        fun bind(round: Round) {
+            this.binding.viewModel = RoundViewModel(round)
             this.binding.executePendingBindings()
         }
 

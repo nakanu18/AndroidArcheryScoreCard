@@ -36,7 +36,7 @@ class HistoryFragment : Fragment() {
             this.binding.roundsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             this.binding.roundsRecyclerView.adapter =
                 HistoryRecyclerAdapter(this.historyViewModel) {
-                    LogUtils.log(it.score.toString())
+                    LogUtils.log("HistoryFragment: select round #${it.ID}")
 
                     // TODO: may want to create a new RoundViewModel here so we can discard later
                     this.historyViewModel.selectedRound.value = it

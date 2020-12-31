@@ -28,13 +28,13 @@ class ArcherDataRepository {
 
         private fun getNewData(): ArcherData {
             return ArcherData(
-                listOf<RoundFormat>(
+                arrayListOf<RoundFormat>(
                     RoundFormat(0, 30, "20yd", "Vegas 300", 3, 300)
                 ),
-                listOf<Round>(),
+                arrayListOf<Round>(),
                 "",
                 1,
-                listOf<Tag>(
+                arrayListOf<Tag>(
                     Tag(0, "SF Premium Riser"),
                     Tag(1, "SF Axiom Limbs 32#"),
                     Tag(3, "Easton Tribute Arrows 1916")
