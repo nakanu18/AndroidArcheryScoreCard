@@ -14,30 +14,35 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
-import kotlinx.android.synthetic.main.fragment_round_editor.*
+import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
+import com.deveradev.androidarcheryscorecard.ui.LogUtils
 
 class RoundEditorFragment : Fragment() {
 
+    private lateinit var binding: FragmentRoundEditorBinding
     private lateinit var historyViewModel: HistoryViewModel
     private lateinit var navController: NavController
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val viewModelFactory = HistoryViewModelFactory(requireActivity())
+
+        this.binding = FragmentRoundEditorBinding.inflate(inflater, container, false)
+        this.historyViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
+        this.historyViewModel.selectedRound.observe(this.viewLifecycleOwner, Observer {
+            LogUtils.log("RoundEditorFragment: selectedRound observer")
+
+            this.binding.endsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            this.binding.endsRecyclerView.adapter = RoundEditorRecyclerAdapter(this.historyViewModel)
+        })
 
         this.navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
         setHasOptionsMenu(true)
 
-        this.historyViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
-        this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
-            ends_recycler_view.layoutManager = LinearLayoutManager(requireActivity())
-            ends_recycler_view.adapter = RoundEditorRecyclerAdapter(this.historyViewModel)
-        })
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_round_editor, container, false)
+        return this.binding.root
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
