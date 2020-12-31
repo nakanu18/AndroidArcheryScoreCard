@@ -16,8 +16,8 @@ class HistoryRecyclerAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(round: RoundViewModel) {
-            binding.viewModel = round
-            binding.executePendingBindings()
+            this.binding.viewModel = round
+            this.binding.executePendingBindings()
         }
 
     }

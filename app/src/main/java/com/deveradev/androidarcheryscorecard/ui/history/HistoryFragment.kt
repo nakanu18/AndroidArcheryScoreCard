@@ -25,7 +25,6 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val viewModelFactory = HistoryViewModelFactory(requireActivity())
-        val root = inflater.inflate(R.layout.fragment_history, container, false)
 
         this.historyViewModel =
             ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
@@ -39,7 +38,7 @@ class HistoryFragment : Fragment() {
                 findNavController().navigate(R.id.action_history_to_round_editor)
             }
         })
-        return root
+        return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
 }

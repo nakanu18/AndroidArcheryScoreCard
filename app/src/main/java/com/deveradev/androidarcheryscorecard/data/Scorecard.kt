@@ -25,7 +25,7 @@ class Scorecard(val round: Round) {
                     ++runningXCount
                 }
                 runningTotal += arrowScore
-                endScore.sortedScores.add(arrowScore)
+                endScore.scores.add(this.round.arrows[arrowID])
                 endScore.endTotal += arrowScore
                 endScore.runningTotal = runningTotal
             }
@@ -45,13 +45,19 @@ class Scorecard(val round: Round) {
     }
 
     inner class EndScore() {
-        val sortedScores = mutableListOf<Int>()
+        val scores = mutableListOf<Int>()
         var endTotal = 0
         var runningTotal = 0
         var xCount = 0
 
         override fun toString(): String {
-            return "scores ${this.sortedScores.toString()} = ${this.endTotal} => ${this.runningTotal} : ${this.xCount}x"
+            val scoreStrings = mutableListOf<String>()
+
+            for (score in scores) {
+                scoreStrings.add(RoundFormat.getVegasArrowScoreString(score))
+            }
+
+            return "scores $scoreStrings = ${this.endTotal} => ${this.runningTotal} : ${this.xCount}x"
         }
     }
 

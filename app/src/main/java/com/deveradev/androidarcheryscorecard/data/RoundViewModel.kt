@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class RoundViewModel(val round: Round) : ViewModel() {
 
-    private val scorecard = ArcherData.getScorecardForRound(this.round)
+    val scorecard = ArcherData.getScorecardForRound(this.round)
 
     val roundName = this.round.roundFormat.name
     val date = this.round.date

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
+import com.deveradev.androidarcheryscorecard.data.RoundFormat
 import com.deveradev.androidarcheryscorecard.data.RoundViewModel
 import com.deveradev.androidarcheryscorecard.databinding.RoundEndItemBinding
 import com.deveradev.androidarcheryscorecard.ui.LogUtils
@@ -15,9 +16,18 @@ class RoundEditorRecyclerAdapter(
 
     inner class ViewHolder(val binding: RoundEndItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(round: RoundViewModel) {
-            binding.viewModel = round
-            binding.executePendingBindings()
+        fun bind(round: RoundViewModel, index: Int) {
+            this.binding.viewModel = round
+            this.binding.index = index
+
+            round.scorecard.endScores[index].let { endScore ->
+                this.binding.apply {
+                    buttonArrow0.text = RoundFormat.getVegasArrowScoreString(endScore.scores[0])
+                    buttonArrow1.text = RoundFormat.getVegasArrowScoreString(endScore.scores[1])
+                    buttonArrow2.text = RoundFormat.getVegasArrowScoreString(endScore.scores[2])
+                }
+            }
+            this.binding.executePendingBindings()
         }
 
     }
@@ -29,9 +39,9 @@ class RoundEditorRecyclerAdapter(
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: RoundEditorRecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RoundEditorRecyclerAdapter.ViewHolder, index: Int) {
         this.historyViewModel.selectedRound.value?.let {
-            holder.bind(it)
+            holder.bind(it, index)
         }
     }
 

@@ -30,14 +30,20 @@ data class RoundFormat(
 
     companion object {
         fun getVegasArrowScore(arrow: Int): Int {
-            val vegasScoreMap = mapOf(
-                11 to 10, 10 to 10, 9 to 9,
-                8 to 8, 7 to 7, 6 to 6, 5 to 5,
-                4 to 4, 3 to 3, 2 to 2, 1 to 1,
-                0 to 0, -1 to 0
-            )
+            return when (arrow) {
+                11 -> 10
+                -1 -> 0
+                else -> arrow
+            }
+        }
 
-            return vegasScoreMap[arrow] ?: 0
+        fun getVegasArrowScoreString(arrow: Int): String {
+            return when (arrow) {
+                11 -> "X"
+                0 -> "M"
+                -1 -> ""
+                else -> arrow.toString()
+            }
         }
     }
 
