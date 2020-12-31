@@ -15,7 +15,7 @@ import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
 import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
-import com.deveradev.androidarcheryscorecard.ui.LogUtils
+import com.deveradev.androidarcheryscorecard.ui.Utils
 
 class RoundEditorFragment : Fragment() {
 
@@ -28,12 +28,14 @@ class RoundEditorFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Utils.log("RoundEditorFragment: onCreate")
+
         val viewModelFactory = HistoryViewModelFactory(requireActivity())
 
         this.binding = FragmentRoundEditorBinding.inflate(inflater, container, false)
         this.historyViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         this.historyViewModel.selectedRound.observe(this.viewLifecycleOwner, Observer {
-            LogUtils.log("RoundEditorFragment: selectedRound observer")
+            Utils.log("RoundEditorFragment: selectedRound->observer")
 
             this.binding.endsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             this.binding.endsRecyclerView.adapter = RoundEditorRecyclerAdapter(this.historyViewModel)

@@ -1,7 +1,6 @@
 package com.deveradev.androidarcheryscorecard.ui.roundeditor
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
@@ -9,7 +8,6 @@ import com.deveradev.androidarcheryscorecard.data.Round
 import com.deveradev.androidarcheryscorecard.data.RoundFormat
 import com.deveradev.androidarcheryscorecard.data.RoundViewModel
 import com.deveradev.androidarcheryscorecard.databinding.RoundEndItemBinding
-import com.deveradev.androidarcheryscorecard.ui.LogUtils
 
 class RoundEditorRecyclerAdapter(
     private val historyViewModel: HistoryViewModel
@@ -27,6 +25,13 @@ class RoundEditorRecyclerAdapter(
                     buttonArrow0.text = RoundFormat.getVegasArrowScoreString(endScore.scores[0])
                     buttonArrow1.text = RoundFormat.getVegasArrowScoreString(endScore.scores[1])
                     buttonArrow2.text = RoundFormat.getVegasArrowScoreString(endScore.scores[2])
+
+                    buttonArrow0.setOnClickListener {
+                        // TODO: change this to real updating of buttons
+                        historyViewModel.selectedRound.value = historyViewModel.selectedRound.value?.apply {
+                            arrows[0] = 0
+                        }
+                    }
                 }
             }
             this.binding.executePendingBindings()

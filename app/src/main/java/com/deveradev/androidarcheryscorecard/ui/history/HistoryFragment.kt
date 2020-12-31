@@ -13,7 +13,7 @@ import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
 import com.deveradev.androidarcheryscorecard.databinding.FragmentHistoryBinding
-import com.deveradev.androidarcheryscorecard.ui.LogUtils
+import com.deveradev.androidarcheryscorecard.ui.Utils
 
 class HistoryFragment : Fragment() {
 
@@ -25,21 +25,23 @@ class HistoryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Utils.log("HistoryFragment: onCreate")
+
         val viewModelFactory = HistoryViewModelFactory(requireActivity())
 
         this.binding = FragmentHistoryBinding.inflate(inflater, container, false)
         this.historyViewModel =
             ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
-            LogUtils.log("HistoryFragment: rounds observer")
+            Utils.log("HistoryFragment: rounds->observer")
 
             this.binding.roundsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             this.binding.roundsRecyclerView.adapter =
                 HistoryRecyclerAdapter(this.historyViewModel) {
-                    LogUtils.log("HistoryFragment: select round #${it.ID}")
+                    Utils.log("HistoryFragment: select round #${it.ID}")
 
                     // TODO: may want to create a new RoundViewModel here so we can discard later
-                    this.historyViewModel.selectedRound.value = it
+                    this.historyViewModel.selectedRound.value = Utils.deepCopy(it)
                     findNavController().navigate(R.id.action_history_to_round_editor)
                 }
         })
