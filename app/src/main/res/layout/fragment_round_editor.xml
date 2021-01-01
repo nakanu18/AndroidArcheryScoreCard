@@ -1,29 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.roundeditor.RoundEditorFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ends_recycler_view"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/round_end_item" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="visible"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ends_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/round_end_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ends_recycler_view">
+        android:layout_height="110dp"
+        android:layout_weight="0"
+        android:background="@color/purple_200">
 
+        <LinearLayout
+            android:id="@+id/linear_layout_middle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/linear_layout_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/button_score_x"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:stateListAnimator="@null"
+                android:text="X"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_10"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:stateListAnimator="@null"
+                android:text="10"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_8"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="8"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_6"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="6"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_4"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="4"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_2"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="2"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_erase"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:textSize="14sp"
+                app:cornerRadius="20dp"
+                app:icon="@android:drawable/ic_menu_revert" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="55dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/button_score_9"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:stateListAnimator="@null"
+                android:text="9"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_7"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="7"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_5"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="5"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_3"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="3"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_1"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="1"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/button_score_m"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_weight="0"
+                android:stateListAnimator="@null"
+                android:text="M"
+                app:cornerRadius="20dp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
