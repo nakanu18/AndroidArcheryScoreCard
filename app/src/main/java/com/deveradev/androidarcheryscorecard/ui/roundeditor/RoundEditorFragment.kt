@@ -19,7 +19,7 @@ import com.deveradev.androidarcheryscorecard.ui.Utils
 import com.deveradev.androidarcheryscorecard.ui.roundeditor.SaveRoundDialogFragment.SaveRoundDialogListener
 import com.google.android.material.snackbar.Snackbar
 
-class RoundEditorFragment : Fragment() {
+class RoundEditorFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentRoundEditorBinding
     private lateinit var historyViewModel: HistoryViewModel
@@ -32,12 +32,14 @@ class RoundEditorFragment : Fragment() {
     ): View {
         Utils.log("RoundEditorFragment: onCreate")
 
+        this.binding = FragmentRoundEditorBinding.inflate(inflater, container, false)
+
         setUpViewModels()
+        setUpControlPanelButtonListeners()
 
         this.navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
         setHasOptionsMenu(true)
 
-        this.binding = FragmentRoundEditorBinding.inflate(inflater, container, false)
         return this.binding.root
     }
 
@@ -45,6 +47,7 @@ class RoundEditorFragment : Fragment() {
         if (item.itemId == android.R.id.home) {
             val saveRoundDialog = SaveRoundDialogFragment(object : SaveRoundDialogListener {
                 override fun onSave(dialog: SaveRoundDialogFragment) {
+                    Utils.log("RoundEditorFragment: save round")
                     showRoundSavedSnackBar()
 
                     historyViewModel.saveSelectedRound()
@@ -53,6 +56,7 @@ class RoundEditorFragment : Fragment() {
                 }
 
                 override fun onDiscard(dialog: SaveRoundDialogFragment) {
+                    Utils.log("RoundEditorFragment: discard round")
                     historyViewModel.discardSelectedRound()
                     dialog.dialog?.cancel()
                     navController.navigateUp()
@@ -61,6 +65,24 @@ class RoundEditorFragment : Fragment() {
             saveRoundDialog.show(requireActivity().supportFragmentManager, "save_round_dialog")
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClick(button: View?) {
+        when (button?.id) {
+            R.id.button_score_x -> updateCurrentArrow(11)
+            R.id.button_score_10 -> updateCurrentArrow(10)
+            R.id.button_score_9 -> updateCurrentArrow(9)
+            R.id.button_score_8 -> updateCurrentArrow(8)
+            R.id.button_score_7 -> updateCurrentArrow(7)
+            R.id.button_score_6 -> updateCurrentArrow(6)
+            R.id.button_score_5 -> updateCurrentArrow(5)
+            R.id.button_score_4 -> updateCurrentArrow(4)
+            R.id.button_score_3 -> updateCurrentArrow(3)
+            R.id.button_score_2 -> updateCurrentArrow(2)
+            R.id.button_score_1 -> updateCurrentArrow(1)
+            R.id.button_score_m -> updateCurrentArrow(0)
+            R.id.button_score_erase -> updateCurrentArrow(-1)
+        }
     }
 
     // Private methods
@@ -73,10 +95,38 @@ class RoundEditorFragment : Fragment() {
         this.historyViewModel.selectedRound.observe(this.viewLifecycleOwner, Observer {
             Utils.log("RoundEditorFragment: selectedRound->observer")
 
-            this.binding.endsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
-            this.binding.endsRecyclerView.adapter =
-                RoundEditorRecyclerAdapter(this.historyViewModel)
+            setUpRecyclerAdapter()
         })
+        this.historyViewModel.selectedEnd.observe(this.viewLifecycleOwner, Observer {
+            Utils.log("RoundEditorFragment: selectedEnd->observer")
+
+            setUpRecyclerAdapter()
+        })
+    }
+
+    private fun setUpRecyclerAdapter() {
+        this.binding.endsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        this.binding.endsRecyclerView.adapter =
+            RoundEditorRecyclerAdapter(this.historyViewModel) { selectedEndID ->
+                Utils.log("RoundEditorFragment: select end $selectedEndID")
+                this.historyViewModel.selectedEnd.value = selectedEndID
+            }
+    }
+
+    private fun setUpControlPanelButtonListeners() {
+        this.binding.buttonScoreX.setOnClickListener(this)
+        this.binding.buttonScore10.setOnClickListener(this)
+        this.binding.buttonScore9.setOnClickListener(this)
+        this.binding.buttonScore8.setOnClickListener(this)
+        this.binding.buttonScore7.setOnClickListener(this)
+        this.binding.buttonScore6.setOnClickListener(this)
+        this.binding.buttonScore5.setOnClickListener(this)
+        this.binding.buttonScore4.setOnClickListener(this)
+        this.binding.buttonScore3.setOnClickListener(this)
+        this.binding.buttonScore2.setOnClickListener(this)
+        this.binding.buttonScore1.setOnClickListener(this)
+        this.binding.buttonScoreM.setOnClickListener(this)
+        this.binding.buttonScoreErase.setOnClickListener(this)
     }
 
     private fun showRoundSavedSnackBar() {
@@ -87,6 +137,10 @@ class RoundEditorFragment : Fragment() {
                 Snackbar.LENGTH_SHORT
             ).show()
         }
+    }
+
+    private fun updateCurrentArrow(newValue: Int) {
+        Utils.log("$newValue")
     }
 
 }

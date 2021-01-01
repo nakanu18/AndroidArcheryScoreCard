@@ -4,6 +4,9 @@ import androidx.lifecycle.ViewModel
 
 class RoundViewModel(val round: Round) : ViewModel() {
 
+    // NOTE: no live data here.  HistoryViewModel has a LiveData(selectedRound) and we build this
+    // view model off of that data
+
     val scorecard = ArcherData.getScorecardForRound(this.round)
 
     val roundName = this.round.roundFormat.name

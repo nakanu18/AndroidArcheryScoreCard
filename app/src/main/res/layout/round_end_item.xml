@@ -12,11 +12,16 @@
         <variable
             name="index"
             type="int" />
+
+        <variable
+            name="isSelectedEnd"
+            type="boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@{isSelectedEnd ? @color/teal_700 : @color/white}">
 
         <TextView
             android:id="@+id/text_end_num"

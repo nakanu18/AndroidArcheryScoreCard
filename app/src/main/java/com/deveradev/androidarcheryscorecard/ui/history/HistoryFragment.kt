@@ -27,9 +27,10 @@ class HistoryFragment : Fragment() {
     ): View {
         Utils.log("HistoryFragment: onCreate")
 
+        this.binding = FragmentHistoryBinding.inflate(inflater, container, false)
+
         setUpViewModels()
 
-        this.binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return this.binding.root
     }
 
@@ -46,7 +47,7 @@ class HistoryFragment : Fragment() {
             this.binding.roundsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             this.binding.roundsRecyclerView.adapter =
                 HistoryRecyclerAdapter(this.historyViewModel) {
-                    Utils.log("HistoryFragment: select round #${it.ID}")
+                    Utils.log("HistoryFragment: goto round #${it.ID}")
 
                     // TODO: may want to create a new RoundViewModel here so we can discard later
                     this.historyViewModel.selectedRound.value = Utils.deepCopy(it)

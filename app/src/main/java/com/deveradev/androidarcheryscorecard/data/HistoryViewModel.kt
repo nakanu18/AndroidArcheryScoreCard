@@ -15,6 +15,7 @@ class HistoryViewModel(context: Context) : ViewModel() {
 
     val rounds = MutableLiveData<ArrayList<Round>>()
     var selectedRound = MutableLiveData<Round>()
+    var selectedEnd = MutableLiveData<Int>(0)
 
     init {
         Utils.log("HistoryViewModel: init")
