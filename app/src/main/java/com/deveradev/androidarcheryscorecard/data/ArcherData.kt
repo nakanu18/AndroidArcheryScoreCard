@@ -24,9 +24,38 @@ data class ArcherData(
             return Scorecard(round)
         }
 
-        fun getArrow(round: Round, endID: Int, arrowID: Int): Int {
+        fun getArrowScore(round: Round, endID: Int, arrowID: Int): Int {
             val index = endID * round.roundFormat.arrowsPerEnd + arrowID
             return round.arrows[index]
+        }
+
+        // Set the arrow score for the last missing value of this end
+        fun setLastArrowScore(round: Round, endID: Int, arrowScore: Int): Boolean {
+            val endStartID = endID * round.roundFormat.arrowsPerEnd
+            var success = false
+
+            for (i in 0 until 3) {
+                if (round.arrows[endStartID + i] == -1) {
+                    round.arrows[endStartID + i] = arrowScore
+                    success = true
+                    break
+                }
+            }
+            return success
+        }
+
+        fun eraseLastArrowScore(round: Round, endID: Int): Boolean {
+            val endStartID = endID * round.roundFormat.arrowsPerEnd
+            var success = false
+
+            for (i in 2 downTo 0 step 1) {
+                if (round.arrows[endStartID + i] != -1) {
+                    round.arrows[endStartID + i] = -1
+                    success = true
+                    break
+                }
+            }
+            return success
         }
     }
 }

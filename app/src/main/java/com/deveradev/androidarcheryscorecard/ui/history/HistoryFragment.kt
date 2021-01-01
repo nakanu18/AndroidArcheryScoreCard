@@ -42,7 +42,7 @@ class HistoryFragment : Fragment() {
         this.historyViewModel =
             ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
-            Utils.log("HistoryFragment: rounds->observer")
+            Utils.log("HistoryFragment: rounds -> data changed")
 
             this.binding.roundsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             this.binding.roundsRecyclerView.adapter =
@@ -51,6 +51,7 @@ class HistoryFragment : Fragment() {
 
                     // TODO: may want to create a new RoundViewModel here so we can discard later
                     this.historyViewModel.selectedRound.value = Utils.deepCopy(it)
+                    this.historyViewModel.selectedEnd.value = 0
                     findNavController().navigate(R.id.action_history_to_round_editor)
                 }
         })

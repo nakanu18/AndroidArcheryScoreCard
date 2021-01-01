@@ -12,10 +12,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
+import com.deveradev.androidarcheryscorecard.data.ArcherData
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
 import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
 import com.deveradev.androidarcheryscorecard.ui.Utils
+import com.deveradev.androidarcheryscorecard.ui.mutation
 import com.deveradev.androidarcheryscorecard.ui.roundeditor.SaveRoundDialogFragment.SaveRoundDialogListener
 import com.google.android.material.snackbar.Snackbar
 
@@ -94,12 +96,12 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
         this.historyViewModel =
             ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         this.historyViewModel.selectedRound.observe(this.viewLifecycleOwner, Observer {
-            Utils.log("RoundEditorFragment: selectedRound->observer")
+            Utils.log("RoundEditorFragment: selectedRound -> data changed")
 
             setUpRecyclerAdapter()
         })
         this.historyViewModel.selectedEnd.observe(this.viewLifecycleOwner, Observer {
-            Utils.log("RoundEditorFragment: selectedEnd->observer")
+            Utils.log("RoundEditorFragment: selectedEnd -> data changed")
 
             setUpRecyclerAdapter()
         })
@@ -149,8 +151,23 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun updateCurrentArrow(newValue: Int) {
-        Utils.log("$newValue")
+    private fun updateCurrentArrow(arrowScore: Int) {
+        var log = "RoundEditorFragment: update arrow ignored"
+
+        this.historyViewModel.selectedRound.mutation {
+            this.historyViewModel.selectedRound.value?.let { round ->
+                this.historyViewModel.selectedEnd.value?.let { selectedEnd ->
+                    if (arrowScore == -1) {
+                        if (ArcherData.eraseLastArrowScore(round, selectedEnd))
+                            log = "RoundEditorFragment: erase arrow"
+                    } else {
+                        if (ArcherData.setLastArrowScore(round, selectedEnd, arrowScore))
+                            log = "RoundEditorFragment: update arrow -> $arrowScore"
+                    }
+                }
+            }
+        }
+        Utils.log(log)
     }
 
 }
