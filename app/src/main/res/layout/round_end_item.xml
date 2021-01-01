@@ -30,7 +30,7 @@
         <Button
             android:id="@+id/button_arrow_0"
             android:layout_width="55dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginStart="4dp"
             android:stateListAnimator="@null"
             app:cornerRadius="20dp"
@@ -44,7 +44,7 @@
         <Button
             android:id="@+id/button_arrow_1"
             android:layout_width="55dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginStart="4dp"
             android:stateListAnimator="@null"
             app:cornerRadius="20dp"
@@ -59,7 +59,7 @@
         <Button
             android:id="@+id/button_arrow_2"
             android:layout_width="55dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginStart="4dp"
             android:stateListAnimator="@null"
             app:cornerRadius="20dp"

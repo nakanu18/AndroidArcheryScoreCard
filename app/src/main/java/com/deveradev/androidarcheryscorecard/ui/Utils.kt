@@ -1,6 +1,7 @@
 package com.deveradev.androidarcheryscorecard.ui
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.deveradev.androidarcheryscorecard.data.Round
 import com.google.gson.Gson
 
@@ -16,3 +17,15 @@ object Utils {
     }
 
 }
+
+// https://stackoverflow.com/questions/48020377/livedata-update-on-object-field-change
+//
+// liveData.mutation {
+//    it.value?.name = "Ed Khalturin"
+//    it.value?.innerClass?.city= "Moscow" // it works with inner class too
+//}
+fun <T> MutableLiveData<T>.mutation(actions: (MutableLiveData<T>) -> Unit) {
+    actions(this)
+    this.value = this.value
+}
+

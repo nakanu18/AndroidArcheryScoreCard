@@ -30,8 +30,7 @@ class HistoryFragment : Fragment() {
         val viewModelFactory = HistoryViewModelFactory(requireActivity())
 
         this.binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        this.historyViewModel =
-            ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
+        this.historyViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
             Utils.log("HistoryFragment: rounds->observer")
 

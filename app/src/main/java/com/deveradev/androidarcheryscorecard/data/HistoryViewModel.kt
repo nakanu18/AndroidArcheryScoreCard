@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.deveradev.androidarcheryscorecard.ui.Utils
+import com.deveradev.androidarcheryscorecard.ui.mutation
 import kotlinx.coroutines.launch
 
+// TODO: change to use AndroidViewModel so we don't have to pass in context
 class HistoryViewModel(context: Context) : ViewModel() {
 
     lateinit var archerData: ArcherData
@@ -27,6 +29,25 @@ class HistoryViewModel(context: Context) : ViewModel() {
 
             rounds.value = archerData.rounds
         }
+    }
+
+    fun saveSelectedRound() {
+        this.rounds.mutation {
+            // Save selectedRound to correct spot in rounds
+            this.selectedRound.value?.let { selectedRound ->
+                this.rounds.value?.let { rounds ->
+                    val index = rounds.indexOfFirst { round -> round.ID == selectedRound.ID }
+                    if (index != -1) {
+                        rounds[index] = selectedRound
+                    }
+                }
+            }
+        }
+        this.selectedRound.value = null
+    }
+
+    fun discardSelectedRound() {
+        this.selectedRound.value = null
     }
 
 }

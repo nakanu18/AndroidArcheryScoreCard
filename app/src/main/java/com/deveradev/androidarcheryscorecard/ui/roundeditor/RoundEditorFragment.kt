@@ -16,6 +16,7 @@ import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
 import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
 import com.deveradev.androidarcheryscorecard.ui.Utils
+import com.deveradev.androidarcheryscorecard.ui.roundeditor.SaveRoundDialogFragment.SaveRoundDialogListener
 
 class RoundEditorFragment : Fragment() {
 
@@ -49,7 +50,20 @@ class RoundEditorFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            this.navController.navigateUp()
+            val saveRoundDialog = SaveRoundDialogFragment(object: SaveRoundDialogListener {
+                override fun onSave(dialog: SaveRoundDialogFragment) {
+                    historyViewModel.saveSelectedRound()
+                    dialog.dialog?.dismiss()
+                    navController.navigateUp()
+                }
+
+                override fun onDiscard(dialog: SaveRoundDialogFragment) {
+                    historyViewModel.discardSelectedRound()
+                    dialog.dialog?.cancel()
+                    navController.navigateUp()
+                }
+            })
+            saveRoundDialog.show(requireActivity().supportFragmentManager, "save_round_dialog")
         }
         return super.onOptionsItemSelected(item)
     }
