@@ -45,7 +45,7 @@
   ],
   "rounds": [
     {
-      "ID": 0,
+      "ID": 1,
       "roundFormat" : {
         "ID": 0,
         "name": "Vegas 300",
@@ -54,7 +54,7 @@
         "arrowsPerEnd": 3,
         "maxScore": 300
       },
-      "date": "12-23-2020",
+      "date": "12-24-2020",
       "tags":  [2, 3],
       "arrows": [
         10, 9, 8,
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "ID": 1,
+      "ID": 0,
       "roundFormat" : {
         "ID": 0,
         "name": "Vegas 300",
@@ -79,7 +79,7 @@
         "arrowsPerEnd": 3,
         "maxScore": 300
       },
-      "date": "12-24-2020",
+      "date": "12-23-2020",
       "tags":  [2, 4],
       "arrows": [
         11, 9, 7,

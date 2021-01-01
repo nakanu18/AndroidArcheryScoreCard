@@ -8,6 +8,18 @@ data class ArcherData(
     val tags: ArrayList<Tag>
 ) {
     companion object {
+        fun getNewIDForRoundFormats(roundFormats: ArrayList<RoundFormat>): Int {
+            return roundFormats.maxOf { it.ID } + 1
+        }
+
+        fun getNewIDForRounds(rounds: ArrayList<Round>): Int {
+            return rounds.maxOf { it.ID } + 1
+        }
+
+        fun getNewIDForTags(tags: ArrayList<Tag>): Int {
+            return tags.maxOf { it.ID } + 1
+        }
+
         fun getScorecardForRound(round: Round): Scorecard {
             return Scorecard(round)
         }
