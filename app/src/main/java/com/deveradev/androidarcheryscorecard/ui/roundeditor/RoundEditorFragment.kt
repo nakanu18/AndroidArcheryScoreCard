@@ -24,6 +24,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentRoundEditorBinding
     private lateinit var historyViewModel: HistoryViewModel
     private lateinit var navController: NavController
+    private var recyclerAdapter: RoundEditorRecyclerAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -104,13 +105,22 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
         })
     }
 
+    // TODO: this is the fix for adapter resetting to top when selecting ends.  noticing some jumping
+    // but its intermittent.
     private fun setUpRecyclerAdapter() {
-        this.binding.endsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        this.binding.endsRecyclerView.adapter =
-            RoundEditorRecyclerAdapter(this.historyViewModel) { selectedEndID ->
+        if (this.recyclerAdapter == null ) {
+            this.recyclerAdapter = RoundEditorRecyclerAdapter(this.historyViewModel) { selectedEndID ->
                 Utils.log("RoundEditorFragment: select end $selectedEndID")
                 this.historyViewModel.selectedEnd.value = selectedEndID
             }
+        }
+
+        if (this.binding.endsRecyclerView.adapter == null) {
+            this.binding.endsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            this.binding.endsRecyclerView.adapter = this.recyclerAdapter
+        } else {
+            this.recyclerAdapter?.notifyDataSetChanged()
+        }
     }
 
     private fun setUpControlPanelButtonListeners() {

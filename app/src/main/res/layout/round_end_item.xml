@@ -21,7 +21,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@{isSelectedEnd ? @color/teal_700 : @color/white}">
+        android:background="@{isSelectedEnd ? @color/selected_end_bg : @color/white}">
 
         <TextView
             android:id="@+id/text_end_num"
