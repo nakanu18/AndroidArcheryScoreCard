@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".ui.roundeditor.RoundEditorFragment">
 
@@ -33,7 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_weight="0"
-        android:background="@color/purple_200">
+        android:background="@color/purple_500"
+        android:elevation="8dp">
 
         <LinearLayout
             android:id="@+id/linear_layout_middle"
@@ -48,16 +50,20 @@
                 android:id="@+id/button_score_x"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
+                android:backgroundTint="@color/wa_gold"
                 android:stateListAnimator="@null"
                 android:text="X"
+                android:textColor="@color/wa_black"
                 app:cornerRadius="20dp" />
 
             <Button
                 android:id="@+id/button_score_10"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
+                android:backgroundTint="@color/wa_gold"
                 android:stateListAnimator="@null"
                 android:text="10"
+                android:textColor="@color/wa_black"
                 app:cornerRadius="20dp" />
 
             <Button
@@ -65,6 +71,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_red"
                 android:stateListAnimator="@null"
                 android:text="8"
                 app:cornerRadius="20dp" />
@@ -74,6 +81,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_blue"
                 android:stateListAnimator="@null"
                 android:text="6"
                 app:cornerRadius="20dp" />
@@ -83,6 +91,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_black"
                 android:stateListAnimator="@null"
                 android:text="4"
                 app:cornerRadius="20dp" />
@@ -92,8 +101,10 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_white"
                 android:stateListAnimator="@null"
                 android:text="2"
+                android:textColor="@color/wa_black"
                 app:cornerRadius="20dp" />
 
             <Button
@@ -101,6 +112,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/black"
                 android:stateListAnimator="@null"
                 android:textSize="14sp"
                 app:cornerRadius="20dp"
@@ -121,8 +133,10 @@
                 android:id="@+id/button_score_9"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
+                android:backgroundTint="@color/wa_gold"
                 android:stateListAnimator="@null"
                 android:text="9"
+                android:textColor="@color/wa_black"
                 app:cornerRadius="20dp" />
 
             <Button
@@ -130,6 +144,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_red"
                 android:stateListAnimator="@null"
                 android:text="7"
                 app:cornerRadius="20dp" />
@@ -139,6 +154,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_blue"
                 android:stateListAnimator="@null"
                 android:text="5"
                 app:cornerRadius="20dp" />
@@ -148,6 +164,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_black"
                 android:stateListAnimator="@null"
                 android:text="3"
                 app:cornerRadius="20dp" />
@@ -157,8 +174,10 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_white"
                 android:stateListAnimator="@null"
                 android:text="1"
+                android:textColor="@color/wa_black"
                 app:cornerRadius="20dp" />
 
             <Button
@@ -166,8 +185,10 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_weight="0"
+                android:backgroundTint="@color/wa_white"
                 android:stateListAnimator="@null"
                 android:text="M"
+                android:textColor="@color/wa_black"
                 app:cornerRadius="20dp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

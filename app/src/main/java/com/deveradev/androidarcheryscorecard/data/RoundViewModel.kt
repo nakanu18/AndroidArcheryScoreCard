@@ -12,4 +12,10 @@ class RoundViewModel(val round: Round) : ViewModel() {
     val score = "${this.scorecard.totalScore}"
     val scoreEx = "${this.scorecard.totalXCount}x"
 
+    fun endNum(endID: Int) = "${endID + 1}"
+    fun arrowScore(endID: Int, arrowID: Int) =
+        RoundFormat.getVegasArrowScoreString(this.scorecard.endScores[endID].scores[arrowID])
+    fun endTotal(endID: Int) = "${this.scorecard.endScores[endID].endTotal}"
+    fun xCount(endID: Int) = "${this.scorecard.endScores[endID].xCount}x"
+
 }

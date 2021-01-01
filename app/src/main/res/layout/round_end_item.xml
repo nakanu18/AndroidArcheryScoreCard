@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.deveradev.androidarcheryscorecard.data.RoundViewModel" />
+
         <variable
             name="index"
             type="int" />
@@ -20,8 +22,8 @@
             android:id="@+id/text_end_num"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.endNum(index)}"
             android:textAlignment="center"
-            android:text="@{String.valueOf(index + 1)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,6 +35,7 @@
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
             android:stateListAnimator="@null"
+            android:text="@{viewModel.arrowScore(index, 0)}"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_arrow_1"
@@ -47,6 +50,7 @@
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
             android:stateListAnimator="@null"
+            android:text="@{viewModel.arrowScore(index, 1)}"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_arrow_2"
@@ -62,6 +66,7 @@
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
             android:stateListAnimator="@null"
+            android:text="@{viewModel.arrowScore(index, 2)}"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_arrow_1"
@@ -73,8 +78,8 @@
             android:id="@+id/text_end_score"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.endTotal(index)}"
             android:textAlignment="center"
-            android:text="@{String.valueOf(viewModel.scorecard.endScores[index].runningTotal)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/text_end_x"
             app:layout_constraintTop_toTopOf="parent"
@@ -85,8 +90,8 @@
             android:id="@+id/text_end_x"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.xCount(index)}"
             android:textAlignment="center"
-            android:text="@{String.valueOf(viewModel.scorecard.endScores[index].xCount) + `x`}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

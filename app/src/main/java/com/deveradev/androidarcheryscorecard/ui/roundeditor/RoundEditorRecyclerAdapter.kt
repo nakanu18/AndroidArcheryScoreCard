@@ -20,18 +20,10 @@ class RoundEditorRecyclerAdapter(
             this.binding.viewModel = viewModel
             this.binding.index = index
 
-            viewModel.scorecard.endScores[index].let { endScore ->
-                this.binding.apply {
-                    buttonArrow0.text = RoundFormat.getVegasArrowScoreString(endScore.scores[0])
-                    buttonArrow1.text = RoundFormat.getVegasArrowScoreString(endScore.scores[1])
-                    buttonArrow2.text = RoundFormat.getVegasArrowScoreString(endScore.scores[2])
-
-                    buttonArrow0.setOnClickListener {
-                        // TODO: change this to real updating of buttons
-                        historyViewModel.selectedRound.value = historyViewModel.selectedRound.value?.apply {
-                            arrows[0] = 0
-                        }
-                    }
+            this.binding.buttonArrow0.setOnClickListener {
+                // TODO: change this to real updating of buttons
+                historyViewModel.selectedRound.value = historyViewModel.selectedRound.value?.apply {
+                    arrows[0] = 0
                 }
             }
             this.binding.executePendingBindings()
