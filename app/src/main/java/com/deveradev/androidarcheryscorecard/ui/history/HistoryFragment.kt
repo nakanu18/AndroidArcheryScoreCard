@@ -27,10 +27,19 @@ class HistoryFragment : Fragment() {
     ): View {
         Utils.log("HistoryFragment: onCreate")
 
-        val viewModelFactory = HistoryViewModelFactory(requireActivity())
+        setUpViewModels()
 
         this.binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        this.historyViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
+        return this.binding.root
+    }
+
+    // Private methods
+
+    private fun setUpViewModels() {
+        val viewModelFactory = HistoryViewModelFactory(requireActivity())
+
+        this.historyViewModel =
+            ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
             Utils.log("HistoryFragment: rounds->observer")
 
@@ -44,7 +53,6 @@ class HistoryFragment : Fragment() {
                     findNavController().navigate(R.id.action_history_to_round_editor)
                 }
         })
-        return this.binding.root
     }
 
 }
