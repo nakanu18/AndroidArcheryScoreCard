@@ -2,6 +2,7 @@ package com.deveradev.androidarcheryscorecard.ui.roundeditor
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.Round
@@ -21,7 +22,6 @@ class RoundEditorRecyclerAdapter(
             this.binding.viewModel = viewModel
             this.binding.index = index
             this.binding.isSelectedEnd = historyViewModel.selectedEnd.value == index
-
 
 
 //            this.binding.buttonArrow0.setOnClickListener {

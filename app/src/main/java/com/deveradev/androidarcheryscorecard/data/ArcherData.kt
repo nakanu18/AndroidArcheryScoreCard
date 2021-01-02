@@ -29,33 +29,46 @@ data class ArcherData(
             return round.arrows[index]
         }
 
-        // Set the arrow score for the last missing value of this end
-        fun setLastArrowScore(round: Round, endID: Int, arrowScore: Int): Boolean {
+        // Finds the last unassigned arrowID in the end.  Returns -1 if all slots are filled.
+        fun findFirstUnassignedArrowID(round: Round, endID: Int): Int {
             val endStartID = endID * round.roundFormat.arrowsPerEnd
-            var success = false
 
             for (i in 0 until 3) {
                 if (round.arrows[endStartID + i] == -1) {
-                    round.arrows[endStartID + i] = arrowScore
-                    success = true
-                    break
+                    return endStartID + i
                 }
             }
-            return success
+            return -1
         }
 
-        fun eraseLastArrowScore(round: Round, endID: Int): Boolean {
+        fun findLastAssignedArrowID(round: Round, endID: Int): Int {
             val endStartID = endID * round.roundFormat.arrowsPerEnd
-            var success = false
 
             for (i in 2 downTo 0 step 1) {
                 if (round.arrows[endStartID + i] != -1) {
-                    round.arrows[endStartID + i] = -1
-                    success = true
-                    break
+                    return endStartID + i
                 }
             }
-            return success
+            return -1
+        }
+
+        // Set the arrow score for the last missing value of this end
+        fun setLastArrowScore(round: Round, endID: Int, arrowScore: Int): Boolean {
+            val arrowID = findFirstUnassignedArrowID(round, endID)
+            if (arrowID != -1) {
+                round.arrows[arrowID] = arrowScore
+                return true
+            }
+            return false
+        }
+
+        fun eraseLastArrowScore(round: Round, endID: Int): Boolean {
+            val arrowID = findLastAssignedArrowID(round, endID)
+            if (arrowID != -1) {
+                round.arrows[arrowID] = -1
+                return true
+            }
+            return false
         }
     }
 }

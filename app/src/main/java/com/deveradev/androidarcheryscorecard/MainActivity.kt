@@ -15,6 +15,9 @@ import androidx.navigation.ui.setupWithNavController
 // TODO: unsure why Scorecard.totalScore computed property is crashing
 // DONE: fetch saved data via coroutine
 // TODO: find out how to dynamically add arrow buttons to the RoundEditor
+// DONE: figure out how to create a color from an R.color inside xml
+//      https://stackoverflow.com/questions/61269493/how-to-set-app-backgroundtint-using-android-databinding-livedata
+//      https://stackoverflow.com/questions/5271387/how-can-i-get-color-int-from-color-resource
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

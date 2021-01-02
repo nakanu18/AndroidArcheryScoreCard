@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="androidx.core.content.ContextCompat" />
+
         <variable
             name="viewModel"
             type="com.deveradev.androidarcheryscorecard.data.RoundViewModel" />
@@ -39,6 +41,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
+            android:backgroundTint="@{ContextCompat.getColor(context, viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 0)))}"
             android:stateListAnimator="@null"
             android:text="@{viewModel.arrowScore(index, 0)}"
             app:cornerRadius="20dp"
@@ -54,6 +57,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
+            android:backgroundTint="@{ContextCompat.getColor(context, viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 1)))}"
             android:stateListAnimator="@null"
             android:text="@{viewModel.arrowScore(index, 1)}"
             app:cornerRadius="20dp"
@@ -70,6 +74,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
+            android:backgroundTint="@{ContextCompat.getColor(context, viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 2)))}"
             android:stateListAnimator="@null"
             android:text="@{viewModel.arrowScore(index, 2)}"
             app:cornerRadius="20dp"
