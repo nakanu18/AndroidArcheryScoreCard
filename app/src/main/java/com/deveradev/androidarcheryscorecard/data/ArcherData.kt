@@ -8,6 +8,23 @@ data class ArcherData(
     val tags: ArrayList<Tag>
 ) {
     companion object {
+        fun createNewRound(
+            rounds: ArrayList<Round>,
+            roundFormats: ArrayList<RoundFormat>
+        ): Round {
+            val newRoundID = getNewIDForRounds(rounds)
+            val roundFormat = roundFormats[0]
+            return Round(
+                newRoundID,
+                roundFormat,
+                "Today",
+                ArrayList<Int>(),
+                ArrayList<Int>())
+                .apply {
+                    setUpDefaultValuesForArrows()
+                }
+        }
+
         fun getNewIDForRoundFormats(roundFormats: ArrayList<RoundFormat>): Int {
             return roundFormats.maxOf { it.ID } + 1
         }
@@ -109,7 +126,15 @@ data class Round(
     val date: String,
     val arrows: ArrayList<Int>,
     val tags: ArrayList<Int>
-)
+) {
+    fun setUpDefaultValuesForArrows() {
+        if (this.arrows.size == 0) {
+            for (i in 0..this.roundFormat.arrowsPerEnd * this.roundFormat.numEnds) {
+                this.arrows.add(-1)
+            }
+        }
+    }
+}
 
 data class Tag(
     val ID: Int,

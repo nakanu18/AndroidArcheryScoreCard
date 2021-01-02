@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
+import com.deveradev.androidarcheryscorecard.data.ArcherData
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
+import com.deveradev.androidarcheryscorecard.data.Round
 import com.deveradev.androidarcheryscorecard.databinding.FragmentHistoryBinding
 import com.deveradev.androidarcheryscorecard.ui.Utils
 
@@ -29,6 +31,7 @@ class HistoryFragment : Fragment() {
         this.binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
         setUpViewModels()
+        setUpButtonListeners()
 
         return this.binding.root
     }
@@ -36,7 +39,6 @@ class HistoryFragment : Fragment() {
     // Private methods
 
     private fun setUpViewModels() {
-
         this.historyViewModel =
             ViewModelProvider(requireActivity()).get(HistoryViewModel::class.java)
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
@@ -54,5 +56,16 @@ class HistoryFragment : Fragment() {
                 }
         })
     }
+
+    private fun setUpButtonListeners() {
+        this.binding.buttonFabNewRound.setOnClickListener {
+            this.historyViewModel.apply {
+                selectedRound.value = ArcherData.createNewRound(archerData.rounds, archerData.roundFormats)
+                selectedEnd.value = 0
+                findNavController().navigate(R.id.action_history_to_round_editor)
+            }
+        }
+    }
+
 
 }

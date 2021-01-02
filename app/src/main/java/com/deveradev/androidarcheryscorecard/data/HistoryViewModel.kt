@@ -39,6 +39,8 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
                     val index = rounds.indexOfFirst { round -> round.ID == selectedRound.ID }
                     if (index != -1) {
                         rounds[index] = selectedRound
+                    } else {
+                        rounds.add(0, selectedRound)
                     }
                 }
             }
