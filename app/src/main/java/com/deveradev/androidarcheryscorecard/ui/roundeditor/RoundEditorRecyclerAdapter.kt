@@ -18,18 +18,10 @@ class RoundEditorRecyclerAdapter(
     inner class ViewHolder(val binding: RoundEndItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(round: Round, index: Int) {
-            val viewModel = RoundViewModel(round)
+            val viewModel = RoundViewModel(round, historyViewModel.getApplication())
             this.binding.viewModel = viewModel
             this.binding.index = index
             this.binding.isSelectedEnd = historyViewModel.selectedEnd.value == index
-
-
-//            this.binding.buttonArrow0.setOnClickListener {
-//                // TODO: change this to real updating of buttons
-//                historyViewModel.selectedRound.value = historyViewModel.selectedRound.value?.apply {
-//                    arrows[0] = 0
-//                }
-//            }
             this.binding.executePendingBindings()
         }
 

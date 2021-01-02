@@ -1,9 +1,11 @@
 package com.deveradev.androidarcheryscorecard.data
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.AndroidViewModel
 import com.deveradev.androidarcheryscorecard.R
 
-class RoundViewModel(val round: Round) : ViewModel() {
+class RoundViewModel(val round: Round, application: Application) : AndroidViewModel(application) {
 
     // NOTE: no live data here.  HistoryViewModel has a LiveData(selectedRound) and we build this
     // view model off of that data
@@ -23,13 +25,27 @@ class RoundViewModel(val round: Round) : ViewModel() {
     fun endTotal(endID: Int) = "${this.scorecard.endScores[endID].endTotal}"
     fun xCount(endID: Int) = "${this.scorecard.endScores[endID].xCount}x"
 
-    fun getVegasColorForArrow(arrow: String) = when (arrow) {
-        "X", "10", "9" -> R.color.wa_gold
-        "8", "7" -> R.color.wa_red
-        "6", "5" -> R.color.wa_blue
-        "4", "3" -> R.color.wa_black
-        "2", "1", "0", "M" -> R.color.wa_white
-        else -> R.color.wa_blank
+    fun getVegasTextColorForArrow(arrow: String): Int {
+        val colorID = when (arrow) {
+            "X", "10", "9", "2", "1", "M" -> R.color.wa_black
+            "8", "7", "6", "5", "4", "3"  -> R.color.wa_white
+            else -> R.color.wa_blank
+        }
+
+        return ContextCompat.getColor(getApplication(), colorID)
+    }
+
+    fun getVegasColorForArrow(arrow: String): Int {
+        val colorID = when (arrow) {
+            "X", "10", "9" -> R.color.wa_gold
+            "8", "7" -> R.color.wa_red
+            "6", "5" -> R.color.wa_blue
+            "4", "3" -> R.color.wa_black
+            "2", "1", "0", "M" -> R.color.wa_white
+            else -> R.color.wa_blank
+        }
+
+        return ContextCompat.getColor(getApplication(), colorID)
     }
 
 }

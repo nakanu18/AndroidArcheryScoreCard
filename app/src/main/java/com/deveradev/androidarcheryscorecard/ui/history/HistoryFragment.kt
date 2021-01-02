@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
-import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
 import com.deveradev.androidarcheryscorecard.databinding.FragmentHistoryBinding
 import com.deveradev.androidarcheryscorecard.ui.Utils
 
@@ -37,10 +36,9 @@ class HistoryFragment : Fragment() {
     // Private methods
 
     private fun setUpViewModels() {
-        val viewModelFactory = HistoryViewModelFactory(requireActivity())
 
         this.historyViewModel =
-            ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
+            ViewModelProvider(requireActivity()).get(HistoryViewModel::class.java)
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
             Utils.log("HistoryFragment: rounds -> data changed")
 

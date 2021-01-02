@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="androidx.core.content.ContextCompat" />
-
         <variable
             name="viewModel"
             type="com.deveradev.androidarcheryscorecard.data.RoundViewModel" />
@@ -23,7 +21,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@{isSelectedEnd ? @color/selected_end_bg : @color/white}">
+        android:background="@{isSelectedEnd ? @color/selected_end_bg : @color/end_bg}">
 
         <TextView
             android:id="@+id/text_end_num"
@@ -41,9 +39,10 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
-            android:backgroundTint="@{ContextCompat.getColor(context, viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 0)))}"
+            android:backgroundTint="@{viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 0))}"
             android:stateListAnimator="@null"
             android:text="@{viewModel.arrowScore(index, 0)}"
+            android:textColor="@{viewModel.getVegasTextColorForArrow(viewModel.arrowScore(index, 0))}"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_arrow_1"
@@ -57,9 +56,10 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
-            android:backgroundTint="@{ContextCompat.getColor(context, viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 1)))}"
+            android:backgroundTint="@{viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 1))}"
             android:stateListAnimator="@null"
             android:text="@{viewModel.arrowScore(index, 1)}"
+            android:textColor="@{viewModel.getVegasTextColorForArrow(viewModel.arrowScore(index, 1))}"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_arrow_2"
@@ -74,9 +74,10 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginStart="4dp"
-            android:backgroundTint="@{ContextCompat.getColor(context, viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 2)))}"
+            android:backgroundTint="@{viewModel.getVegasColorForArrow(viewModel.arrowScore(index, 2))}"
             android:stateListAnimator="@null"
             android:text="@{viewModel.arrowScore(index, 2)}"
+            android:textColor="@{viewModel.getVegasTextColorForArrow(viewModel.arrowScore(index, 2))}"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_arrow_1"

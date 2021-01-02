@@ -1,15 +1,14 @@
 package com.deveradev.androidarcheryscorecard.data
 
-import android.content.Context
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.deveradev.androidarcheryscorecard.ui.Utils
 import com.deveradev.androidarcheryscorecard.ui.mutation
 import kotlinx.coroutines.launch
 
-// TODO: change to use AndroidViewModel so we don't have to pass in context
-class HistoryViewModel(context: Context) : ViewModel() {
+class HistoryViewModel(application: Application) : AndroidViewModel(application) {
 
     lateinit var archerData: ArcherData
 
@@ -21,7 +20,7 @@ class HistoryViewModel(context: Context) : ViewModel() {
         Utils.log("HistoryViewModel: init")
 
         this.viewModelScope.launch {
-            archerData = ArcherDataRepository.getData(context)
+            archerData = ArcherDataRepository.getData(getApplication())
             Utils.log("ArcherDataRepository: getData")
 
             for (round in archerData.rounds) {

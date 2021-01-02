@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.ArcherData
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
-import com.deveradev.androidarcheryscorecard.data.HistoryViewModelFactory
 import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
 import com.deveradev.androidarcheryscorecard.ui.Utils
 import com.deveradev.androidarcheryscorecard.ui.mutation
@@ -91,10 +90,8 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
     // Private methods
 
     private fun setUpViewModels() {
-        val viewModelFactory = HistoryViewModelFactory(requireActivity())
-
         this.historyViewModel =
-            ViewModelProvider(requireActivity(), viewModelFactory).get(HistoryViewModel::class.java)
+            ViewModelProvider(requireActivity()).get(HistoryViewModel::class.java)
         this.historyViewModel.selectedRound.observe(this.viewLifecycleOwner, Observer {
             Utils.log("RoundEditorFragment: selectedRound -> data changed")
 
@@ -110,11 +107,12 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
     // TODO: this is the fix for adapter resetting to top when selecting ends.  noticing some jumping
     // but its intermittent.
     private fun setUpRecyclerAdapter() {
-        if (this.recyclerAdapter == null ) {
-            this.recyclerAdapter = RoundEditorRecyclerAdapter(this.historyViewModel) { selectedEndID ->
-                Utils.log("RoundEditorFragment: select end $selectedEndID")
-                this.historyViewModel.selectedEnd.value = selectedEndID
-            }
+        if (this.recyclerAdapter == null) {
+            this.recyclerAdapter =
+                RoundEditorRecyclerAdapter(this.historyViewModel) { selectedEndID ->
+                    Utils.log("RoundEditorFragment: select end $selectedEndID")
+                    this.historyViewModel.selectedEnd.value = selectedEndID
+                }
         }
 
         if (this.binding.endsRecyclerView.adapter == null) {
