@@ -12,11 +12,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
-import com.deveradev.androidarcheryscorecard.data.ArcherData
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
 import com.deveradev.androidarcheryscorecard.ui.Utils
-import com.deveradev.androidarcheryscorecard.ui.mutation
 import com.deveradev.androidarcheryscorecard.ui.roundeditor.SaveRoundDialogFragment.SaveRoundDialogListener
 import com.google.android.material.snackbar.Snackbar
 
@@ -26,7 +24,6 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
     private lateinit var historyViewModel: HistoryViewModel
     private lateinit var navController: NavController
     private var recyclerAdapter: RoundEditorRecyclerAdapter? = null
-    private var isEditted = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +44,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (this.isEditted && item.itemId == android.R.id.home) {
+        if (this.historyViewModel.isSelectedRoundEdited && item.itemId == android.R.id.home) {
             val saveRoundDialog = SaveRoundDialogFragment(object : SaveRoundDialogListener {
                 override fun onSave(dialog: SaveRoundDialogFragment) {
                     Utils.log("RoundEditorFragment: save round")
@@ -153,26 +150,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
     }
 
     private fun updateCurrentArrow(arrowScore: Int) {
-        var log = "RoundEditorFragment: update arrow ignored"
-
-        this.historyViewModel.selectedRound.mutation {
-            this.historyViewModel.selectedRound.value?.let { round ->
-                this.historyViewModel.selectedEnd.value?.let { selectedEnd ->
-                    if (arrowScore == -1) {
-                        if (ArcherData.eraseLastArrowScore(round, selectedEnd)) {
-                            isEditted = true
-                            log = "RoundEditorFragment: erase arrow"
-                        }
-                    } else {
-                        if (ArcherData.setLastArrowScore(round, selectedEnd, arrowScore)){
-                            isEditted = true
-                            log = "RoundEditorFragment: update arrow -> $arrowScore"
-                        }
-                    }
-                }
-            }
-        }
-        Utils.log(log)
+        this.historyViewModel.updateCurrentArrowForSelectedRound(arrowScore)
     }
 
 }
