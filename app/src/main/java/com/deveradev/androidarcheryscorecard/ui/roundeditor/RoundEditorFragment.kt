@@ -26,6 +26,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
     private lateinit var historyViewModel: HistoryViewModel
     private lateinit var navController: NavController
     private var recyclerAdapter: RoundEditorRecyclerAdapter? = null
+    private var isEditted = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +47,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
+        if (this.isEditted && item.itemId == android.R.id.home) {
             val saveRoundDialog = SaveRoundDialogFragment(object : SaveRoundDialogListener {
                 override fun onSave(dialog: SaveRoundDialogFragment) {
                     Utils.log("RoundEditorFragment: save round")
@@ -65,6 +66,8 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
                 }
             })
             saveRoundDialog.show(requireActivity().supportFragmentManager, "save_round_dialog")
+        } else {
+            this.navController.navigateUp()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -156,11 +159,15 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
             this.historyViewModel.selectedRound.value?.let { round ->
                 this.historyViewModel.selectedEnd.value?.let { selectedEnd ->
                     if (arrowScore == -1) {
-                        if (ArcherData.eraseLastArrowScore(round, selectedEnd))
+                        if (ArcherData.eraseLastArrowScore(round, selectedEnd)) {
+                            isEditted = true
                             log = "RoundEditorFragment: erase arrow"
+                        }
                     } else {
-                        if (ArcherData.setLastArrowScore(round, selectedEnd, arrowScore))
+                        if (ArcherData.setLastArrowScore(round, selectedEnd, arrowScore)){
+                            isEditted = true
                             log = "RoundEditorFragment: update arrow -> $arrowScore"
+                        }
                     }
                 }
             }

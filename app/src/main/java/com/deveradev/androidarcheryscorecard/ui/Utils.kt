@@ -1,14 +1,23 @@
 package com.deveradev.androidarcheryscorecard.ui
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
-import com.deveradev.androidarcheryscorecard.data.Round
 import com.google.gson.Gson
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 object Utils {
 
     fun log(description: String) {
         Log.i(AED_LOG_TAG, description)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getFormattedDate(currentDate: LocalDateTime): String {
+        val formatter = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm a")
+        return currentDate.format(formatter)
     }
 
     inline fun <reified  T> deepCopy(obj: T): T {
