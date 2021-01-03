@@ -36,7 +36,8 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createNewRoundForEditing() {
-        this.selectedRound.value = ArcherData.createNewRound(archerData.rounds, archerData.roundFormats)
+        this.selectedRound.value =
+            ArcherData.createNewRound(archerData.rounds, archerData.roundFormats)
         this.selectedEnd.value = 0
         this.isSelectedRoundEdited = false
     }
@@ -59,7 +60,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
                             log = "RoundEditorFragment: erase arrow"
                         }
                     } else {
-                        if (ArcherData.setLastArrowScore(round, selectedEnd, arrowScore)){
+                        if (ArcherData.setLastArrowScore(round, selectedEnd, arrowScore)) {
                             isSelectedRoundEdited = true
                             log = "RoundEditorFragment: update arrow -> $arrowScore"
 
@@ -72,6 +73,13 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
             }
         }
         Utils.log(log)
+    }
+
+    fun selectEndCapped(endID: Int) {
+        this.selectedRound.value?.let {
+            this.selectedEnd.value = minOf(endID, ArcherData.findLastEmptyEnd(it))
+            Utils.log("RoundEditorFragment: select end ${this.selectedEnd.value}")
+        }
     }
 
     fun selectNextEnd() {

@@ -110,8 +110,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
         if (this.recyclerAdapter == null) {
             this.recyclerAdapter =
                 RoundEditorRecyclerAdapter(this.historyViewModel) { selectedEndID ->
-                    Utils.log("RoundEditorFragment: select end $selectedEndID")
-                    this.historyViewModel.selectedEnd.value = selectedEndID
+                    this.historyViewModel.selectEndCapped(selectedEndID)
                 }
         }
 

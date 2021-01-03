@@ -94,6 +94,12 @@ data class ArcherData(
             }
             return false
         }
+
+        fun findLastEmptyEnd(round: Round): Int {
+            val lastArrowID = round.arrows.indexOfLast { it != -1 } + 1
+
+            return minOf(lastArrowID / round.roundFormat.arrowsPerEnd, round.roundFormat.numEnds)
+        }
     }
 }
 
