@@ -2,8 +2,11 @@ package com.deveradev.androidarcheryscorecard.ui
 
 import android.os.Build
 import android.util.Log
+import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
+import com.airbnb.paris.extensions.style
 import com.google.gson.Gson
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -36,4 +39,13 @@ object Utils {
 fun <T> MutableLiveData<T>.mutation(actions: (MutableLiveData<T>) -> Unit) {
     actions(this)
     this.value = this.value
+}
+
+// Bind style using Data Binding via Paris
+//
+// https://stackoverflow.com/questions/31980342/android-data-binding-style
+// https://github.com/airbnb/paris
+@BindingAdapter("bindStyle")
+fun TextView.bindStyle(styleResourceId: Int) {
+    this.style(styleResourceId)
 }

@@ -9,27 +9,27 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="rounded_arrow_score_wa_gold" parent="rounded_arrow_score">
+    <style name="rounded_arrow_score_wa_gold">
         <item name="android:backgroundTint">@color/wa_gold</item>
         <item name="android:textColor">@color/black</item>
     </style>
-    <style name="rounded_arrow_score_wa_red" parent="rounded_arrow_score">
+    <style name="rounded_arrow_score_wa_red">
         <item name="android:backgroundTint">@color/wa_red</item>
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="rounded_arrow_score_wa_blue" parent="rounded_arrow_score">
+    <style name="rounded_arrow_score_wa_blue">
         <item name="android:backgroundTint">@color/wa_blue</item>
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="rounded_arrow_score_wa_black" parent="rounded_arrow_score">
+    <style name="rounded_arrow_score_wa_black">
         <item name="android:backgroundTint">@color/wa_black</item>
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="rounded_arrow_score_wa_white" parent="rounded_arrow_score">
+    <style name="rounded_arrow_score_wa_white">
         <item name="android:backgroundTint">@color/wa_white</item>
         <item name="android:textColor">@color/black</item>
     </style>
-    <style name="rounded_arrow_score_wa_blank" parent="rounded_arrow_score">
+    <style name="rounded_arrow_score_wa_blank">
         <item name="android:backgroundTint">@color/wa_blank</item>
         <item name="android:textColor">@color/white</item>
     </style>
