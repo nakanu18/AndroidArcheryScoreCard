@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/button_arrow_0"
-            style="@style/style_rounded_arrow_score"
+            style="@style/rounded_arrow_score"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
@@ -55,7 +55,7 @@
 
         <TextView
             android:id="@+id/button_arrow_1"
-            style="@style/style_rounded_arrow_score"
+            style="@style/rounded_arrow_score"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
@@ -72,7 +72,7 @@
 
         <TextView
             android:id="@+id/button_arrow_2"
-            style="@style/style_rounded_arrow_score"
+            style="@style/rounded_arrow_score"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"

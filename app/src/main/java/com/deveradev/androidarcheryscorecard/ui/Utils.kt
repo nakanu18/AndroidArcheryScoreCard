@@ -20,7 +20,7 @@ object Utils {
         return currentDate.format(formatter)
     }
 
-    inline fun <reified  T> deepCopy(obj: T): T {
+    inline fun <reified T> deepCopy(obj: T): T {
         val json = Gson().toJson(obj)
         return Gson().fromJson(json, T::class.java)
     }
@@ -37,4 +37,3 @@ fun <T> MutableLiveData<T>.mutation(actions: (MutableLiveData<T>) -> Unit) {
     actions(this)
     this.value = this.value
 }
-

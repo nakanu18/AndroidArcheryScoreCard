@@ -1,17 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="style_rounded_arrow_score">
+    <!-- style_rounded_arrow_score -->
+
+    <style name="rounded_arrow_score">
         <item name="android:layout_width">45dp</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:background">@drawable/rounded_corner</item>
         <item name="android:gravity">center</item>
     </style>
-    <style name="style_control_panel_button">
+
+    <style name="rounded_arrow_score_wa_gold" parent="rounded_arrow_score">
+        <item name="android:backgroundTint">@color/wa_gold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="rounded_arrow_score_wa_red" parent="rounded_arrow_score">
+        <item name="android:backgroundTint">@color/wa_red</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="rounded_arrow_score_wa_blue" parent="rounded_arrow_score">
+        <item name="android:backgroundTint">@color/wa_blue</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="rounded_arrow_score_wa_black" parent="rounded_arrow_score">
+        <item name="android:backgroundTint">@color/wa_black</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="rounded_arrow_score_wa_white" parent="rounded_arrow_score">
+        <item name="android:backgroundTint">@color/wa_white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="rounded_arrow_score_wa_blank" parent="rounded_arrow_score">
+        <item name="android:backgroundTint">@color/wa_blank</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- style_control_panel_button -->
+
+    <style name="control_panel_button">
         <item name="android:layout_width">50dp</item>
         <item name="android:layout_height">50dp</item>
         <item name="cornerRadius">20dp</item>
         <item name="android:textSize">12sp</item>
         <item name="android:layout_marginLeft">2dp</item>
         <item name="android:layout_marginRight">2dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="control_panel_button_wa_gold" parent="control_panel_button">
+        <item name="android:backgroundTint">@color/wa_gold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="control_panel_button_wa_red" parent="control_panel_button">
+        <item name="android:backgroundTint">@color/wa_red</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="control_panel_button_wa_blue" parent="control_panel_button">
+        <item name="android:backgroundTint">@color/wa_blue</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="control_panel_button_wa_black" parent="control_panel_button">
+        <item name="android:backgroundTint">@color/wa_black</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="control_panel_button_wa_white" parent="control_panel_button">
+        <item name="android:backgroundTint">@color/wa_white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>
