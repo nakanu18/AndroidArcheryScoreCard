@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="style_rounded_arrow_score">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@drawable/rounded_corner</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="style_control_panel_button">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+    </style>
+</resources>
