@@ -1,4 +1,4 @@
-package com.deveradev.androidarcheryscorecard.ui
+package com.deveradev.androidarcheryscorecard.utils
 
 import android.os.Build
 import android.util.Log
@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.paris.extensions.style
+import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
 import com.google.gson.Gson
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

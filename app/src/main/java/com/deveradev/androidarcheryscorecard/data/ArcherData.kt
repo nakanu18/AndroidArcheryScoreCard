@@ -2,7 +2,7 @@ package com.deveradev.androidarcheryscorecard.data
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.deveradev.androidarcheryscorecard.ui.Utils
+import com.deveradev.androidarcheryscorecard.utils.Utils
 import java.time.LocalDateTime
 
 data class ArcherData(
@@ -37,11 +37,19 @@ data class ArcherData(
         }
 
         fun getNewIDForRounds(rounds: ArrayList<Round>): Int {
-            return rounds.maxOf { it.ID } + 1
+            return if (rounds.size > 0) {
+                rounds.maxOf { it.ID } + 1
+            } else {
+                0
+            }
         }
 
         fun getNewIDForTags(tags: ArrayList<Tag>): Int {
-            return tags.maxOf { it.ID } + 1
+            return if (tags.size > 0) {
+                tags.maxOf { it.ID } + 1
+            } else {
+                0
+            }
         }
 
         fun getScorecardForRound(round: Round): Scorecard {

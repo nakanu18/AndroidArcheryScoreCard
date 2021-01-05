@@ -6,8 +6,8 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.deveradev.androidarcheryscorecard.ui.Utils
-import com.deveradev.androidarcheryscorecard.ui.mutation
+import com.deveradev.androidarcheryscorecard.utils.Utils
+import com.deveradev.androidarcheryscorecard.utils.mutation
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
@@ -17,6 +17,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     val rounds = MutableLiveData<ArrayList<Round>>()
     var selectedRound = MutableLiveData<Round>()
     var selectedEnd = MutableLiveData<Int>(0)
+    var deletedRound: Pair<Round, Int>? = null
     var isSelectedRoundEdited = false
 
     init {
@@ -49,7 +50,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun updateCurrentArrowForSelectedRound(arrowScore: Int) {
-        var log = "RoundEditorFragment: update arrow ignored"
+        var log = "HistoryViewModel: update arrow ignored"
 
         this.selectedRound.mutation {
             this.selectedRound.value?.let { round ->
@@ -57,12 +58,12 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
                     if (arrowScore == -1) {
                         if (ArcherData.eraseLastArrowScore(round, selectedEnd)) {
                             isSelectedRoundEdited = true
-                            log = "RoundEditorFragment: erase arrow"
+                            log = "HistoryViewModel: erase arrow"
                         }
                     } else {
                         if (ArcherData.setLastArrowScore(round, selectedEnd, arrowScore)) {
                             isSelectedRoundEdited = true
-                            log = "RoundEditorFragment: update arrow -> $arrowScore"
+                            log = "HistoryViewModel: update arrow -> $arrowScore"
 
                             if (ArcherData.findFirstUnassignedArrowID(round, selectedEnd) == -1) {
                                 selectNextEnd()
@@ -78,7 +79,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     fun selectEndCapped(endID: Int) {
         this.selectedRound.value?.let {
             this.selectedEnd.value = minOf(endID, ArcherData.findLastEmptyEnd(it))
-            Utils.log("RoundEditorFragment: select end ${this.selectedEnd.value}")
+            Utils.log("HistoryViewModel: select end ${this.selectedEnd.value}")
         }
     }
 
@@ -109,6 +110,28 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
     fun discardSelectedRound() {
         this.selectedRound.value = null
+    }
+
+    fun deleteRound(roundID: Int) {
+        this.rounds.mutation {
+            it.value?.let { rounds ->
+                this.deletedRound = rounds[roundID] to roundID
+                rounds.removeAt(roundID)
+                Utils.log("HistoryViewModel: delete round $roundID")
+            }
+        }
+    }
+
+    fun undoDeletedRound() {
+        this.rounds.mutation {
+            it.value?.let { rounds ->
+                deletedRound?.let { deletedRound ->
+                    rounds.add(deletedRound.second, deletedRound.first)
+                    Utils.log("HistoryViewModel: undo delete round ${deletedRound.second}")
+                }
+                deletedRound = null
+            }
+        }
     }
 
 }

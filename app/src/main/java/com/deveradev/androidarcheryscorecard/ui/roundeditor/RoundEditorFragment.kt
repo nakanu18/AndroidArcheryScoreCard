@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
-import com.deveradev.androidarcheryscorecard.ui.Utils
 import com.deveradev.androidarcheryscorecard.ui.roundeditor.SaveRoundDialogFragment.SaveRoundDialogListener
+import com.deveradev.androidarcheryscorecard.utils.Utils
 import com.google.android.material.snackbar.Snackbar
 
 class RoundEditorFragment : Fragment(), View.OnClickListener {

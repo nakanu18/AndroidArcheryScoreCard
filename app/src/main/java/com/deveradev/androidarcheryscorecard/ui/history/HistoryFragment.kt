@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.databinding.FragmentHistoryBinding
-import com.deveradev.androidarcheryscorecard.ui.Utils
+import com.deveradev.androidarcheryscorecard.utils.SwipeToDeleteCallback
+import com.deveradev.androidarcheryscorecard.utils.Utils
 
 class HistoryFragment : Fragment() {
 
@@ -45,14 +47,18 @@ class HistoryFragment : Fragment() {
         this.historyViewModel.rounds.observe(this.viewLifecycleOwner, Observer {
             Utils.log("HistoryFragment: rounds -> data changed")
 
-            this.binding.roundsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
-            this.binding.roundsRecyclerView.adapter =
-                HistoryRecyclerAdapter(this.historyViewModel) {
-                    Utils.log("HistoryFragment: goto round #${it.ID}")
+            val adapter = HistoryRecyclerAdapter(requireActivity(), this.historyViewModel) {
+                Utils.log("HistoryFragment: goto round #${it.ID}")
 
-                    this.historyViewModel.copyRoundForEditing(it)
-                    findNavController().navigate(R.id.action_history_to_round_editor)
-                }
+                this.historyViewModel.copyRoundForEditing(it)
+                findNavController().navigate(R.id.action_history_to_round_editor)
+            }
+
+            this.binding.roundsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
+            this.binding.roundsRecyclerView.adapter = adapter
+
+            val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
+            itemTouchHelper.attachToRecyclerView(this.binding.roundsRecyclerView)
         })
     }
 
