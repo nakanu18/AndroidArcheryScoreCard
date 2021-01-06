@@ -6,6 +6,8 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.deveradev.androidarcheryscorecard.DaggerDIComponent
+import com.deveradev.androidarcheryscorecard.MainApplication
 import com.deveradev.androidarcheryscorecard.utils.Utils
 import com.deveradev.androidarcheryscorecard.utils.mutation
 import kotlinx.coroutines.launch
@@ -24,7 +26,10 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         Utils.log("HistoryViewModel: init")
 
         this.viewModelScope.launch {
-            archerData = ArcherDataRepository.getData(getApplication())
+            val mainApplication = (application as MainApplication)
+            val archerDataRepository = mainApplication.daggerDIComponent.getArcheryDataRepository()
+
+            archerData = archerDataRepository.getData(mainApplication)
             Utils.log("ArcherDataRepository: getData")
 
             for (round in archerData.rounds) {

@@ -18,6 +18,7 @@ import androidx.navigation.ui.setupWithNavController
 // DONE: figure out how to create a color from an R.color inside xml
 //      https://stackoverflow.com/questions/61269493/how-to-set-app-backgroundtint-using-android-databinding-livedata
 //      https://stackoverflow.com/questions/5271387/how-can-i-get-color-int-from-color-resource
+// DONE_BETTER: use Paris to add colors to a style and then apply that style dynamically
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
