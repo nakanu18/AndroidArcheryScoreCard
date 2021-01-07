@@ -40,7 +40,6 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun createNewRoundForEditing() {
         this.selectedRound.value =
             ArcherData.createNewRound(archerData.rounds, archerData.roundFormats)

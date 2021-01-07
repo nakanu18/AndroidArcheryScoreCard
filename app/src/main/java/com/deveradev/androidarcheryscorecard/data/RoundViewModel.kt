@@ -3,6 +3,7 @@ package com.deveradev.androidarcheryscorecard.data
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.deveradev.androidarcheryscorecard.R
+import com.deveradev.androidarcheryscorecard.utils.Utils
 
 class RoundViewModel(val round: Round, application: Application) : AndroidViewModel(application) {
 
@@ -12,7 +13,7 @@ class RoundViewModel(val round: Round, application: Application) : AndroidViewMo
     val scorecard = ArcherData.getScorecardForRound(this.round)
 
     val roundName = this.round.roundFormat.name
-    val date = this.round.date
+    val date = Utils.getFormattedDate(this.round.date)
     val distance = this.round.roundFormat.distance
     val score = "${this.scorecard.totalScore}"
     val scoreEx = "${this.scorecard.totalXCount}x"

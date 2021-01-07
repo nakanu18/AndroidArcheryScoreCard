@@ -1,6 +1,6 @@
 {
   "saveVersion": 1,
-  "saveDate": "1/17/18, 12:45 AM",
+  "saveDate": "1-17-2018 12:45 AM",
   "tags": [
     {
       "ID": 0,
@@ -54,7 +54,7 @@
         "arrowsPerEnd": 3,
         "maxScore": 300
       },
-      "date": "12-24-2020",
+      "date": "12-24-2020 5:00 AM",
       "tags":  [2, 3],
       "arrows": [
         10, 9, 8,
@@ -79,7 +79,7 @@
         "arrowsPerEnd": 3,
         "maxScore": 300
       },
-      "date": "12-23-2020",
+      "date": "12-23-2020 12:45 AM",
       "tags":  [2, 4],
       "arrows": [
         11, 9, 7,

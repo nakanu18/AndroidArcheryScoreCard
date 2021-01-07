@@ -23,7 +23,6 @@ class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private lateinit var historyViewModel: HistoryViewModel
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,7 +61,6 @@ class HistoryFragment : Fragment() {
         })
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setUpButtonListeners() {
         this.binding.buttonFabNewRound.setOnClickListener {
             this.historyViewModel.createNewRoundForEditing()

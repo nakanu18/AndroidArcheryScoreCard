@@ -1,16 +1,16 @@
 package com.deveradev.androidarcheryscorecard.utils
 
-import android.os.Build
+import android.annotation.SuppressLint
 import android.util.Log
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.paris.extensions.style
 import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
+import com.deveradev.androidarcheryscorecard.ui.UNKNOWN_VALUE
 import com.google.gson.Gson
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.*
 
 object Utils {
 
@@ -18,10 +18,19 @@ object Utils {
         Log.i(AED_LOG_TAG, description)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getFormattedDate(currentDate: LocalDateTime): String {
-        val formatter = DateTimeFormatter.ofPattern("MM/dd/yy HH:mm a")
-        return currentDate.format(formatter)
+    @SuppressLint("SimpleDateFormat")
+    fun getFormattedDate(currentDate: Date): String {
+        val formatter = SimpleDateFormat("EEE, MMM d, yyyy h:mm a", Locale.US)
+        return formatter.format(currentDate)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getFormattedDate(currentDate: String): String {
+        val formatter = SimpleDateFormat("MM-dd-yyyy h:mm a", Locale.US)
+        formatter.parse(currentDate)?.let {
+           return getFormattedDate(it)
+        }
+        return UNKNOWN_VALUE
     }
 
     inline fun <reified T> deepCopy(obj: T): T {

@@ -1,9 +1,8 @@
 package com.deveradev.androidarcheryscorecard.data
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.deveradev.androidarcheryscorecard.utils.Utils
-import java.time.LocalDateTime
+import java.util.*
+import kotlin.collections.ArrayList
 
 data class ArcherData(
     val roundFormats: ArrayList<RoundFormat>,
@@ -13,7 +12,6 @@ data class ArcherData(
     val tags: ArrayList<Tag>
 ) {
     companion object {
-        @RequiresApi(Build.VERSION_CODES.O)
         fun createNewRound(
             rounds: ArrayList<Round>,
             roundFormats: ArrayList<RoundFormat>
@@ -23,7 +21,7 @@ data class ArcherData(
             return Round(
                 newRoundID,
                 roundFormat,
-                Utils.getFormattedDate(LocalDateTime.now()),
+                Utils.getFormattedDate(Date()),
                 ArrayList<Int>(),
                 ArrayList<Int>()
             )
