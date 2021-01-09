@@ -1,20 +1,19 @@
-package com.deveradev.androidarcheryscorecard.data
+package com.deveradev.androidarcheryscorecard.ui.history
 
 import android.app.Application
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.deveradev.androidarcheryscorecard.DaggerDIComponent
 import com.deveradev.androidarcheryscorecard.MainApplication
+import com.deveradev.androidarcheryscorecard.data.ArcherData
+import com.deveradev.androidarcheryscorecard.data.Round
 import com.deveradev.androidarcheryscorecard.utils.Utils
 import com.deveradev.androidarcheryscorecard.utils.mutation
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var archerData: ArcherData
+    private lateinit var archerData: ArcherData
 
     val rounds = MutableLiveData<ArrayList<Round>>()
     var selectedRound = MutableLiveData<Round>()

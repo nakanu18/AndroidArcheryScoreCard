@@ -2,12 +2,9 @@ package com.deveradev.androidarcheryscorecard.ui.roundeditor
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
+import com.deveradev.androidarcheryscorecard.ui.history.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.data.Round
-import com.deveradev.androidarcheryscorecard.data.RoundFormat
-import com.deveradev.androidarcheryscorecard.data.RoundViewModel
 import com.deveradev.androidarcheryscorecard.databinding.RoundEndItemBinding
 
 class RoundEditorRecyclerAdapter(

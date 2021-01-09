@@ -1,6 +1,7 @@
 package com.deveradev.androidarcheryscorecard.data
 
 import android.content.Context
+import com.deveradev.androidarcheryscorecard.utils.Utils
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -8,6 +9,10 @@ import javax.inject.Singleton
 class ArcherDataRepository @Inject constructor(private val archerDataService: ArcherDataService) {
 
     private var archerData: ArcherData? = null
+
+    init {
+        Utils.log("ArcherDataRepository: init")
+    }
 
     suspend fun getData(context: Context): ArcherData {
         if (this.archerData == null) {

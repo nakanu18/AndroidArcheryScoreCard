@@ -12,8 +12,8 @@
         android:title="@string/title_history" />
 
     <item
-        android:id="@+id/navigation_bows"
-        android:icon="@drawable/ic_bows_black_24dp"
-        android:title="@string/title_bows" />
+        android:id="@+id/navigation_tags"
+        android:icon="@drawable/ic_tags_black_24dp"
+        android:title="@string/title_tags" />
 
 </menu>

@@ -22,10 +22,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_bows"
-        android:name="com.deveradev.androidarcheryscorecard.ui.bows.BowsFragment"
-        android:label="@string/title_bows"
-        tools:layout="@layout/fragment_bows" />
+        android:id="@+id/navigation_tags"
+        android:name="com.deveradev.androidarcheryscorecard.ui.tags.TagsFragment"
+        android:label="@string/title_tags"
+        tools:layout="@layout/fragment_tags" />
 
     <fragment
         android:id="@+id/fragment_round_editor"

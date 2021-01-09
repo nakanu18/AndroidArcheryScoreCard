@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.deveradev.androidarcheryscorecard.data.RoundViewModel" />
+            type="com.deveradev.androidarcheryscorecard.ui.roundeditor.RoundViewModel" />
 
         <variable
             name="index"

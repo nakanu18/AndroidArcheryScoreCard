@@ -1,11 +1,14 @@
-package com.deveradev.androidarcheryscorecard.data
+package com.deveradev.androidarcheryscorecard.ui.roundeditor
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.deveradev.androidarcheryscorecard.R
+import com.deveradev.androidarcheryscorecard.data.ArcherData
+import com.deveradev.androidarcheryscorecard.data.Round
+import com.deveradev.androidarcheryscorecard.data.RoundFormat
 import com.deveradev.androidarcheryscorecard.utils.Utils
 
-class RoundViewModel(val round: Round, application: Application) : AndroidViewModel(application) {
+class RoundViewModel(private val round: Round, application: Application) : AndroidViewModel(application) {
 
     // NOTE: no live data here.  HistoryViewModel has a LiveData(selectedRound) and we build this
     // view model off of that data

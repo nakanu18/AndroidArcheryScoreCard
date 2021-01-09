@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
-import com.deveradev.androidarcheryscorecard.data.HistoryViewModel
+import com.deveradev.androidarcheryscorecard.ui.history.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
 import com.deveradev.androidarcheryscorecard.ui.roundeditor.SaveRoundDialogFragment.SaveRoundDialogListener
 import com.deveradev.androidarcheryscorecard.utils.Utils
