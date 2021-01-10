@@ -30,9 +30,9 @@ data class ArcherData(
                 }
         }
 
-        fun getNewIDForRoundFormats(roundFormats: ArrayList<RoundFormat>): Int {
-            return roundFormats.maxOf { it.ID } + 1
-        }
+        fun createNewTag(tags: ArrayList<Tag>) = Tag(getNewIDForTags(tags), "", "")
+
+        fun getNewIDForRoundFormats(roundFormats: ArrayList<RoundFormat>) = roundFormats.maxOf { it.ID } + 1
 
         fun getNewIDForRounds(rounds: ArrayList<Round>): Int {
             return if (rounds.size > 0) {

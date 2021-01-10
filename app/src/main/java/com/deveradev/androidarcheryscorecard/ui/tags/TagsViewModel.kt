@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.deveradev.androidarcheryscorecard.MainApplication
 import com.deveradev.androidarcheryscorecard.data.ArcherData
 import com.deveradev.androidarcheryscorecard.data.ArcherDataRepository
+import com.deveradev.androidarcheryscorecard.data.Round
 import com.deveradev.androidarcheryscorecard.data.Tag
 import com.deveradev.androidarcheryscorecard.utils.Utils
 import com.deveradev.androidarcheryscorecard.utils.mutation
@@ -20,6 +21,7 @@ class TagsViewModel(application: Application) : AndroidViewModel(application) {
     val tags = MutableLiveData<ArrayList<Tag>>()
     var selectedTag = MutableLiveData<Tag>()
     var deletedTag: Pair<Tag, Int>? = null
+    var isSelectedTagEdited = false
 
     init {
         Utils.log("TagsViewModel: init")
@@ -38,6 +40,16 @@ class TagsViewModel(application: Application) : AndroidViewModel(application) {
             tags.value = archerData.tags
         }
 
+    }
+
+    fun createNewTagForEditing() {
+        this.selectedTag.value = ArcherData.createNewTag(this.archerData.tags)
+        this.isSelectedTagEdited = false
+    }
+
+    fun copyTagForEditing(tag: Tag) {
+        this.selectedTag.value = Utils.deepCopy(tag)
+        this.isSelectedTagEdited = false
     }
 
     fun deleteTag(tagID: Int) {

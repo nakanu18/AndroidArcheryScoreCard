@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
@@ -31,6 +32,7 @@ class TagsFragment : Fragment() {
         this.binding = FragmentTagsBinding.inflate(inflater, container, false)
 
         setUpViewModels()
+        setUpButtonListeners()
 
         return this.binding.root
     }
@@ -52,6 +54,13 @@ class TagsFragment : Fragment() {
             ItemTouchHelper(SwipeToDeleteCallback(adapter))
                 .attachToRecyclerView(this.binding.tagsRecyclerView)
         })
+    }
+
+    private fun setUpButtonListeners() {
+        this.binding.buttonFabNewTag.setOnClickListener {
+            this.tagsViewModel.createNewTagForEditing()
+//            findNavController().navigate(R.id.action_history_to_round_editor)
+        }
     }
 
 }
