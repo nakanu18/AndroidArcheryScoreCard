@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
@@ -53,6 +54,7 @@ class TagsFragment : Fragment() {
 
             this.binding.tagsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             this.binding.tagsRecyclerView.adapter = adapter
+            this.binding.tagsRecyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL))
 
             ItemTouchHelper(SwipeToDeleteCallback(adapter))
                 .attachToRecyclerView(this.binding.tagsRecyclerView)

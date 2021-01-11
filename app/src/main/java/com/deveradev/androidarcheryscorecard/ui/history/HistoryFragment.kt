@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
@@ -52,6 +53,7 @@ class HistoryFragment : Fragment() {
 
             this.binding.roundsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             this.binding.roundsRecyclerView.adapter = adapter
+            this.binding.roundsRecyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL))
 
             ItemTouchHelper(SwipeToDeleteCallback(adapter))
                 .attachToRecyclerView(this.binding.roundsRecyclerView)

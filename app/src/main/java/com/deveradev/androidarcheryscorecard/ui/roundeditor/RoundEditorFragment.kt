@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.ui.history.HistoryViewModel
@@ -118,6 +119,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
         if (this.binding.endsRecyclerView.adapter == null) {
             this.binding.endsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             this.binding.endsRecyclerView.adapter = this.recyclerAdapter
+            this.binding.endsRecyclerView.addItemDecoration(DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL))
         } else {
             this.recyclerAdapter?.notifyDataSetChanged()
         }
