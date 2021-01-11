@@ -7,6 +7,6 @@ import com.deveradev.androidarcheryscorecard.data.Tag
 class TagViewModel(private val tag: Tag, application: Application): AndroidViewModel(application) {
 
     val name = this.tag.name
-    val description = this.tag.notes
+    val notes = this.tag.notes
 
 }

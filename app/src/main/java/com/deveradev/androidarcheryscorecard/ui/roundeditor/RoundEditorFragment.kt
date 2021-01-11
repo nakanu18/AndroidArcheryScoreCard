@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.deveradev.androidarcheryscorecard.R
 import com.deveradev.androidarcheryscorecard.ui.history.HistoryViewModel
 import com.deveradev.androidarcheryscorecard.databinding.FragmentRoundEditorBinding
-import com.deveradev.androidarcheryscorecard.ui.roundeditor.SaveRoundDialogFragment.SaveRoundDialogListener
+import com.deveradev.androidarcheryscorecard.ui.common.SaveDialogFragment
+import com.deveradev.androidarcheryscorecard.ui.common.SaveDialogFragment.SaveDialogListener
 import com.deveradev.androidarcheryscorecard.utils.Utils
 import com.google.android.material.snackbar.Snackbar
 
@@ -45,8 +46,8 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (this.historyViewModel.isSelectedRoundEdited && item.itemId == android.R.id.home) {
-            val saveRoundDialog = SaveRoundDialogFragment(object : SaveRoundDialogListener {
-                override fun onSave(dialog: SaveRoundDialogFragment) {
+            val saveRoundDialog = SaveDialogFragment(object : SaveDialogListener {
+                override fun onSave(dialog: SaveDialogFragment) {
                     Utils.log("RoundEditorFragment: save round")
                     showRoundSavedSnackBar()
 
@@ -55,7 +56,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
                     navController.navigateUp()
                 }
 
-                override fun onDiscard(dialog: SaveRoundDialogFragment) {
+                override fun onDiscard(dialog: SaveDialogFragment) {
                     Utils.log("RoundEditorFragment: discard round")
                     historyViewModel.discardSelectedRound()
                     dialog.dialog?.cancel()
@@ -110,7 +111,7 @@ class RoundEditorFragment : Fragment(), View.OnClickListener {
         if (this.recyclerAdapter == null) {
             this.recyclerAdapter =
                 RoundEditorRecyclerAdapter(this.historyViewModel) { selectedEndID ->
-                    this.historyViewModel.selectEndCapped(selectedEndID)
+                    historyViewModel.selectEndCapped(selectedEndID)
                 }
         }
 

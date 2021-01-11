@@ -52,6 +52,37 @@ class TagsViewModel(application: Application) : AndroidViewModel(application) {
         this.isSelectedTagEdited = false
     }
 
+    fun updateTagNameForSelectedTag(name: String) {
+        this.selectedTag.value?.name = name
+        this.isSelectedTagEdited = true
+    }
+
+    fun updateTagNotesForSelectedTag(notes: String) {
+        this.selectedTag.value?.notes = notes
+        this.isSelectedTagEdited = true
+    }
+
+    fun saveSelectedRound() {
+        this.tags.mutation {
+            // Save selectedTag to correct spot in tags
+            selectedTag.value?.let { selectedTag ->
+                tags.value?.let { tags ->
+                    val index = tags.indexOfFirst { tag -> tag.ID == selectedTag.ID }
+                    if (index != -1) {
+                        tags[index] = selectedTag
+                    } else {
+                        tags.add(0, selectedTag)
+                    }
+                }
+            }
+        }
+        this.selectedTag.value = null
+    }
+
+    fun discardSelectedTag() {
+        this.selectedTag.value = null
+    }
+
     fun deleteTag(tagID: Int) {
         this.tags.mutation {
             it.value?.let { tags ->

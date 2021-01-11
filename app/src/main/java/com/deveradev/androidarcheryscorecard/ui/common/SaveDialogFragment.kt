@@ -1,4 +1,4 @@
-package com.deveradev.androidarcheryscorecard.ui.roundeditor
+package com.deveradev.androidarcheryscorecard.ui.common
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -6,12 +6,12 @@ import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 
-class SaveRoundDialogFragment(private val listener: SaveRoundDialogListener) : DialogFragment() {
+class SaveDialogFragment(private val listener: SaveDialogListener) : DialogFragment() {
 
-    interface SaveRoundDialogListener {
+    interface SaveDialogListener {
 
-        fun onSave(dialog: SaveRoundDialogFragment)
-        fun onDiscard(dialog: SaveRoundDialogFragment)
+        fun onSave(dialog: SaveDialogFragment)
+        fun onDiscard(dialog: SaveDialogFragment)
 
     }
 
@@ -21,10 +21,10 @@ class SaveRoundDialogFragment(private val listener: SaveRoundDialogListener) : D
             val builder = AlertDialog.Builder(it).apply {
                 setMessage("Save data?")
                 setPositiveButton("Save", DialogInterface.OnClickListener { _, _ ->
-                    listener.onSave(this@SaveRoundDialogFragment)
+                    listener.onSave(this@SaveDialogFragment)
                 })
                 setNegativeButton("Discard", DialogInterface.OnClickListener { _, _ ->
-                    listener.onDiscard(this@SaveRoundDialogFragment)
+                    listener.onDiscard(this@SaveDialogFragment)
                 })
             }
             // Create the AlertDialog object and return it

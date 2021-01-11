@@ -46,6 +46,9 @@ class TagsFragment : Fragment() {
 
             val adapter = TagsRecyclerAdapter(requireActivity(), this.tagsViewModel) {
                 Utils.log("TagsFragment: goto tag #${it.ID}")
+
+                this.tagsViewModel.copyTagForEditing(it)
+                findNavController().navigate(R.id.action_tags_to_tag_editor)
             }
 
             this.binding.tagsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
@@ -59,7 +62,7 @@ class TagsFragment : Fragment() {
     private fun setUpButtonListeners() {
         this.binding.buttonFabNewTag.setOnClickListener {
             this.tagsViewModel.createNewTagForEditing()
-//            findNavController().navigate(R.id.action_history_to_round_editor)
+            findNavController().navigate(R.id.action_tags_to_tag_editor)
         }
     }
 

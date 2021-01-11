@@ -157,6 +157,6 @@ data class Round(
 
 data class Tag(
     val ID: Int,
-    val name: String,
-    val notes: String = ""
+    var name: String,
+    var notes: String = ""
 )

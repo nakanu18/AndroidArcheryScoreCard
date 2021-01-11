@@ -25,11 +25,21 @@
         android:id="@+id/navigation_tags"
         android:name="com.deveradev.androidarcheryscorecard.ui.tags.TagsFragment"
         android:label="@string/title_tags"
-        tools:layout="@layout/fragment_tags" />
+        tools:layout="@layout/fragment_tags" >
+        <action
+            android:id="@+id/action_tags_to_tag_editor"
+            app:destination="@id/tagEditorFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_round_editor"
         android:name="com.deveradev.androidarcheryscorecard.ui.roundeditor.RoundEditorFragment"
         android:label="@string/title_round_editor"
         tools:layout="@layout/fragment_round_editor" />
+
+    <fragment
+        android:id="@+id/tagEditorFragment"
+        android:name="com.deveradev.androidarcheryscorecard.ui.tageditor.TagEditorFragment"
+        android:label="@string/title_tag_editor"
+        tools:layout="@layout/fragment_tag_editor" />
 </navigation>
