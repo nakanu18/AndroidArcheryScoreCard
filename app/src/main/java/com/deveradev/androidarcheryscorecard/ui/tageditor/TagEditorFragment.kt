@@ -15,8 +15,8 @@ import com.deveradev.androidarcheryscorecard.databinding.FragmentTagEditorBindin
 import com.deveradev.androidarcheryscorecard.ui.common.SaveDialogFragment
 import com.deveradev.androidarcheryscorecard.ui.tags.TagsViewModel
 import com.deveradev.androidarcheryscorecard.utils.Utils
+import com.deveradev.androidarcheryscorecard.utils.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputLayout
 
 class TagEditorFragment : Fragment() {
 
@@ -52,6 +52,7 @@ class TagEditorFragment : Fragment() {
                     tagsViewModel.saveSelectedRound()
                     dialog.dialog?.cancel()
                     navController.navigateUp()
+                    hideKeyboard()
                 }
 
                 override fun onDiscard(dialog: SaveDialogFragment) {
@@ -59,11 +60,13 @@ class TagEditorFragment : Fragment() {
                     tagsViewModel.discardSelectedTag()
                     dialog.dialog?.cancel()
                     navController.navigateUp()
+                    hideKeyboard()
                 }
             })
             saveTagDialog.show(requireActivity().supportFragmentManager, "save_tag_dialog")
         } else {
             this.navController.navigateUp()
+            hideKeyboard()
         }
         return super.onOptionsItemSelected(item)
     }

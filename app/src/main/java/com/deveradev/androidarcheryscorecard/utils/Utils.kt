@@ -1,9 +1,12 @@
 package com.deveradev.androidarcheryscorecard.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.airbnb.paris.extensions.style
 import com.deveradev.androidarcheryscorecard.ui.AED_LOG_TAG
@@ -50,6 +53,17 @@ object Utils {
 fun <T> MutableLiveData<T>.mutation(actions: (MutableLiveData<T>) -> Unit) {
     actions(this)
     this.value = this.value
+}
+
+// Hide soft keyboard
+//
+// https://stackoverflow.com/questions/1109022/how-do-you-close-hide-the-android-soft-keyboard-using-java
+fun Fragment.hideKeyboard() {
+    val view = requireActivity().currentFocus
+    view?.let {
+        val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm?.hideSoftInputFromWindow(it.windowToken, 0)
+    }
 }
 
 // Bind style using Data Binding via Paris

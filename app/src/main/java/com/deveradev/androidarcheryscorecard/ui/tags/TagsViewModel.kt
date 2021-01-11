@@ -53,13 +53,17 @@ class TagsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun updateTagNameForSelectedTag(name: String) {
+        if (this.selectedTag.value?.name != name) {
+            this.isSelectedTagEdited = true
+        }
         this.selectedTag.value?.name = name
-        this.isSelectedTagEdited = true
     }
 
     fun updateTagNotesForSelectedTag(notes: String) {
+        if (this.selectedTag.value?.notes != notes) {
+            this.isSelectedTagEdited = true
+        }
         this.selectedTag.value?.notes = notes
-        this.isSelectedTagEdited = true
     }
 
     fun saveSelectedRound() {
