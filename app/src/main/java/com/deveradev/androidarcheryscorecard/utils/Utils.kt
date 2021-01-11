@@ -19,18 +19,19 @@ object Utils {
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun getFormattedDate(currentDate: Date): String {
-        val formatter = SimpleDateFormat("EEE, MMM d, yyyy h:mm a", Locale.US)
-        return formatter.format(currentDate)
+    fun getDisplayDate(currentDate: String): String {
+        val formatter = SimpleDateFormat("MM-dd-yyyy h:mm a", Locale.US)
+        formatter.parse(currentDate)?.let {
+            val displayFormatter = SimpleDateFormat("EEE, MMM d, yyyy h:mm a", Locale.US)
+            return displayFormatter.format(it)
+        }
+        return UNKNOWN_VALUE
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun getFormattedDate(currentDate: String): String {
+    fun getFormattedDate(currentDate: Date): String {
         val formatter = SimpleDateFormat("MM-dd-yyyy h:mm a", Locale.US)
-        formatter.parse(currentDate)?.let {
-           return getFormattedDate(it)
-        }
-        return UNKNOWN_VALUE
+        return formatter.format(currentDate)
     }
 
     inline fun <reified T> deepCopy(obj: T): T {

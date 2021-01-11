@@ -16,7 +16,7 @@ class RoundViewModel(private val round: Round, application: Application) : Andro
     val scorecard = ArcherData.getScorecardForRound(this.round)
 
     val roundName = this.round.roundFormat.name
-    val date = Utils.getFormattedDate(this.round.date)
+    val date = Utils.getDisplayDate(this.round.date)
     val distance = this.round.roundFormat.distance
     val score = "${this.scorecard.totalScore}"
     val scoreEx = "${this.scorecard.totalXCount}x"
