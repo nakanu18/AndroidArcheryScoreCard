@@ -19,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 //      https://stackoverflow.com/questions/61269493/how-to-set-app-backgroundtint-using-android-databinding-livedata
 //      https://stackoverflow.com/questions/5271387/how-can-i-get-color-int-from-color-resource
 // DONE_BETTER: use Paris to add colors to a style and then apply that style dynamically
+// TODO: fix keyboard not hiding when focus changes from text input to bottom nav
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
